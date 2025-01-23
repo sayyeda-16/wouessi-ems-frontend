@@ -1,0 +1,12 @@
+{
+    "git": {
+      "enabled": true,
+      "ignore": ["*.test.js", "*.md"],
+      "deployments": {
+        "preview": {
+          "branches": ["dev"]
+        }
+      }
+    }
+  }
+  
