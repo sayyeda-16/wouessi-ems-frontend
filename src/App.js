@@ -4,7 +4,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-        Welcome to Wouessi 2025 - EMS 
+        EMS Dev
         </p>
       </header>
     </div>
