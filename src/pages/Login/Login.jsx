@@ -17,8 +17,7 @@ const Login = () => {
             <div className="login-page-image">
                 <img src={LoginImage} alt="Login Page Company Image" />
             </div>
-            <div className="form-login">
-                {/* ✅ Logo moved to Top-Right */}
+            <div className="form-login">{}
                 <div className="company-logo">
                     <img src={Logo} alt="Wouessi Company Logo" />
                 </div>

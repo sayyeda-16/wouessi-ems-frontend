@@ -14,7 +14,6 @@ const CheckBox = ({ id, checked, onChange, className }) => {
     );
 };
 
-// Prop Types for validation
 CheckBox.propTypes = {
     id: PropTypes.string.isRequired,
     checked: PropTypes.bool,
@@ -22,7 +21,6 @@ CheckBox.propTypes = {
     className: PropTypes.string,
 };
 
-// Default Props → Ensures it's unchecked by default
 CheckBox.defaultProps = {
     checked: false,
     className: "",

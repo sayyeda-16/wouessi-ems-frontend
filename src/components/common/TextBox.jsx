@@ -17,7 +17,6 @@ const TextBox = ({ id, className, type, value, onChange, placeholder, required, 
     );
 };
 
-// Prop Types for validation
 TextBox.propTypes = {
     id: PropTypes.string.isRequired,
     className: PropTypes.string,
@@ -29,7 +28,6 @@ TextBox.propTypes = {
     disabled: PropTypes.bool,
 };
 
-// Default props
 TextBox.defaultProps = {
     type: "text",
     required: false,

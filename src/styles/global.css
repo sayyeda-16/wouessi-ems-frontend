@@ -1,10 +1,8 @@
-/* Global Styles */
 :root {
     --primary-font: "Poppins", sans-serif;
     --background-color: #fff;
 }
 
-/* Apply Global Styles */
 body {
     font-family: var(--primary-font);
     background-color: var(--background-color);
