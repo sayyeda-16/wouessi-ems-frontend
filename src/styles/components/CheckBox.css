@@ -1,0 +1,11 @@
+/* Checkbox Input */
+.checkbox-input {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+/* Checked State */
+.checkbox-input:checked {
+    accent-color: #2b03a2; /* Checkbox color when checked */
+}

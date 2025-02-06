@@ -1,0 +1,30 @@
+/* Base button styles */
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    max-width: 300px;
+    padding: 0.7rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    text-align: center;
+    margin: 1rem auto;
+    background-color: #2b03a2; /* Primary color */
+    color: #ffffff; /* White text */
+    transition: background 0.3s ease;
+}
+
+/* Hover state */
+.btn:hover {
+    background-color: #3A06D6;
+}
+
+/* Disabled button */
+.btn:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+}

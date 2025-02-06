@@ -1,0 +1,27 @@
+/* Input Field Styling */
+.textbox-field {
+    width: 100%;
+    padding: 0.7rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus Effect */
+.textbox-field:focus {
+    border-color: #2b03a2;
+    box-shadow: 0 0 5px rgba(43, 3, 162, 0.5);
+}
+
+/* Placeholder Styling */
+.textbox-field::placeholder {
+    color: #aaa;
+}
+
+/* Disabled Input */
+.textbox-field:disabled {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+}

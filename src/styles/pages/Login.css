@@ -1,0 +1,142 @@
+.login-container {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.login-page-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f3f4f6;
+}
+
+.login-page-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.form-login {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 2rem;
+    position: relative;
+}
+
+.company-logo {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.company-logo img {
+    max-width: 100px;
+}
+
+.form-login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-login-header h1 {
+    font-size: 1.8rem;
+    color: #2b03a2;
+}
+
+.username-field, .password-field {
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.username-field label, .password-field label {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.username-field-textbox, .password-textbox {
+    width: 100%;
+    border: 1px solid #2b03a2;
+}
+
+.username-field input,
+.password-field input {
+    border: 1px solid #2b03a2;
+}
+
+.username-field input:focus,
+.password-field input:focus {
+    outline: none;
+    border-color: #2b03a2;
+    box-shadow: 0 0 5px rgba(43, 3, 162, 0.5);
+}
+
+.remember-forgot-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 350px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.forgot-password a {
+    color: #2b03a2;
+    text-decoration: none;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+.login-button {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+}
+
+.btn-primary {
+    width: 100%;
+    max-width: 350px;
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .login-page-image {
+        display: none;
+    }
+
+    .form-login {
+        width: 90%;
+        margin: auto;
+        padding: 1.5rem;
+    }
+
+    .remember-forgot-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+}
