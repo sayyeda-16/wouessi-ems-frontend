@@ -17,7 +17,7 @@ const Login = () => {
             <div className="login-page-image">
                 <img src={LoginImage} alt="Login Page Company Image" />
             </div>
-            <div className="form-login">{}
+            <div className="form-login">
                 <div className="company-logo">
                     <img src={Logo} alt="Wouessi Company Logo" />
                 </div>
@@ -49,7 +49,6 @@ const Login = () => {
                     />
                 </div>
 
-                {/* ✅ Remember Me & Forgot Password in Same Line */}
                 <div className="remember-forgot-container">
                     <div className="remember-me">
                         <CheckBox
