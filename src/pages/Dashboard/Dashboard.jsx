@@ -1,6 +1,19 @@
 import React, { useState } from "react";
+import {
+    FaChartLine, FaCheckCircle, FaClipboardList, FaCog, FaHourglassHalf, FaMoneyBillWave,
+    FaProjectDiagram, FaUmbrellaBeach, FaUser, FaUsers, FaUserTie
+} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import Approvals from "../../assets/images/Approvals.png";
 import EmpImage from "../../assets/images/employee.png";
+import Leaves from "../../assets/images/Leaves.png";
+import MyProfile from "../../assets/images/myprofile.jpg";
+import Onboarding from "../../assets/images/Onboarding.jpg";
+import Payroll from "../../assets/images/Payroll.jpg";
+import Perfromance from "../../assets/images/Performance.png";
+import Project from "../../assets/images/project.jpg";
+import Settings from "../../assets/images/Settings.png";
+import Timesheets from "../../assets/images/Timesheets.png";
 import Footer from "../../components/layout/Footer";
 import Header from "../../components/layout/Header";
 import Sidebar from "../../components/layout/Sidebar";
@@ -14,29 +27,30 @@ const employee = {
 
 // Sidebar Navigation Menu
 const menuItems = [
-    { name: "My Profile", path: "/profile", icon: "👤" },
-    { name: "Onboarding", path: "/onboarding", icon: "📋" },
-    { name: "Timesheets", path: "/timesheets", icon: "⏳" },
-    { name: "Leaves", path: "/leaves", icon: "🌴" },
-    { name: "Payroll", path: "/payroll", icon: "💰" },
-    { name: "Projects", path: "/projects", icon: "📊" },
-    { name: "Team Members", path: "/team", icon: "👥" },
-    { name: "Approvals", path: "/approvals", icon: "✅" },
-    { name: "Performance", path: "/performance", icon: "📈" },
-    { name: "Settings", path: "/settings", icon: "⚙️" },
+    { name: "My Profile", path: "/profile", icon: <FaUser /> },
+    { name: "Manage Employees", path: "/employee-management", icon: <FaUserTie /> },
+    { name: "Onboarding", path: "/onboarding", icon: <FaClipboardList /> },
+    { name: "Timesheets", path: "/timesheets", icon: <FaHourglassHalf /> },
+    { name: "Leaves", path: "/leaves", icon: <FaUmbrellaBeach /> },
+    { name: "Payroll", path: "/payroll", icon: <FaMoneyBillWave /> },
+    { name: "Projects", path: "/projects", icon: <FaProjectDiagram /> },
+    { name: "Team Members", path: "/team", icon: <FaUsers /> },
+    { name: "Approvals", path: "/approvals", icon: <FaCheckCircle /> },
+    { name: "Performance", path: "/performance", icon: <FaChartLine /> },
+    { name: "Settings", path: "/settings", icon: <FaCog /> },
 ];
 
 // Dashboard Cards
 const dashboardCards = [
-    { title: "My Profile", path: "/profile", image: EmpImage },
-    { title: "Onboarding", path: "/onboarding", image: EmpImage },
-    { title: "Timesheets", path: "/timesheets", image: EmpImage },
-    { title: "Leaves", path: "/leaves", image: EmpImage },
-    { title: "Payroll", path: "/payroll", image: EmpImage },
-    { title: "Projects", path: "/projects", image: EmpImage },
-    { title: "Approvals", path: "/approvals", image: EmpImage },
-    { title: "Performance", path: "/performance", image: EmpImage },
-    { title: "Settings", path: "/performance", image: EmpImage },
+    { title: "My Profile", path: "/profile", image: MyProfile },
+    { title: "Onboarding", path: "/onboarding", image: Onboarding },
+    { title: "Timesheets", path: "/timesheets", image: Timesheets },
+    { title: "Leaves", path: "/leaves", image: Leaves },
+    { title: "Payroll", path: "/payroll", image: Payroll },
+    { title: "Projects", path: "/projects", image: Project },
+    { title: "Approvals", path: "/approvals", image: Approvals },
+    { title: "Performance", path: "/performance", image: Perfromance },
+    { title: "Settings", path: "/performance", image: Settings },
 ];
 
 const Dashboard = () => {

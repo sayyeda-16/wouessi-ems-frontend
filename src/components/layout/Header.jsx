@@ -7,7 +7,7 @@ const Header = ({ toggleSidebar, isSidebarOpen }) => {
             <button className="hamburger-btn" onClick={toggleSidebar}>
                 {isSidebarOpen ? "✖" : "☰"}
             </button>
-            <span className="header-title">Employee Management System</span>
+            <span className="header-title">Employee Dashboard</span>
         </header>
     );
 };
