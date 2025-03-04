@@ -1,0 +1,11 @@
+git remote add origin https://github.com/your-username/your-forked-repo.git 
+git remote add upstream https://github.com/anshjindal/wouessi-ems-frontend/ 
+git fetch upstream
+git push origin main
+_______________________________________________________
+
+git branch -D [branch-name]
+git branch -a
+_______________________________________________________
+
+git fetch -p
