@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
-    FaChartLine,
-    FaCog, FaHourglassHalf, FaMoneyBillWave,
-    FaProjectDiagram, FaUmbrellaBeach, FaUser,
-    FaUserTie
+    FaChartLine, FaCog, FaHourglassHalf, FaMoneyBillWave,
+    FaProjectDiagram, FaUmbrellaBeach, FaUser, FaUserTie
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Approvals from "../../assets/images/Approvals.png";
@@ -18,22 +16,23 @@ import Timesheets from "../../assets/images/Timesheets.png";
 import Footer from "../../components/layout/Footer";
 import Header from "../../components/layout/Header";
 import Sidebar from "../../components/layout/Sidebar";
-import { getUserDetails, logout } from "../../services/authService";
+import { getEmployeeById, logout } from "../../services/authService";
 import "../../styles/pages/Dashboard.css";
 
 const Dashboard = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-    const [user, setUser] = useState(null);
+    const [employee, setEmployee] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchUser = async () => {
+        const fetchEmployee = async () => {
             try {
-                const userData = await getUserDetails();
-                if (!userData) {
-                    throw new Error("User not authenticated");
-                }
-                setUser(userData);
+                const empId = localStorage.getItem("empId");
+                if (!empId) throw new Error("Employee ID missing");
+
+                const employeeData = await getEmployeeById(empId);
+                if (!employeeData || !employeeData.employee) throw new Error("User not authenticated");
+                setEmployee(employeeData.employee);
             } catch (error) {
                 console.error("User not authenticated, redirecting...");
                 localStorage.clear();
@@ -42,7 +41,7 @@ const Dashboard = () => {
             }
         };
 
-        fetchUser();
+        fetchEmployee();
     }, [navigate]);
 
     const handleLogout = async () => {
@@ -56,11 +55,11 @@ const Dashboard = () => {
         }
     };
 
-    if (!user) return <p>Loading...</p>;
+    if (!employee) return <p>Loading...</p>;
 
     const menuItems = [
         { name: "My Profile", path: "/profile", icon: <FaUser /> },
-        ...(user.role === "admin"
+        ...(employee.role === "admin"
             ? [
                 { name: "Manage Employees", path: "/employee-management", icon: <FaUserTie /> },
                 { name: "Settings", path: "/settings", icon: <FaCog /> }
@@ -81,18 +80,19 @@ const Dashboard = () => {
         { title: "Leaves", path: "/leaves", image: Leaves },
         { title: "Payroll", path: "/payroll", image: Payroll },
         { title: "Projects", path: "/projects", image: Project },
-        { title: "Approvals", path: "/approvals", image: Approvals },
-        { title: "Performance", path: "/performance", image: Performance },
-        ...(user.role === "admin" ? [{ title: "Settings", path: "/settings", image: Settings }] : [])
+        ...(employee.role === "admin" ? [
+            { title: "Approvals", path: "/approvals", image: Approvals },
+            { title: "Performance", path: "/performance", image: Performance },
+            { title: "Settings", path: "/settings", image: Settings }
+        ] : [])
     ];
 
     return (
         <div className="dashboard-wrapper">
             <Header toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} isSidebarOpen={isSidebarOpen} />
             <div className="dashboard-body">
-                <Sidebar user={user} navLinks={menuItems} isOpen={isSidebarOpen} onLogout={handleLogout} />
+                <Sidebar user={employee} navLinks={menuItems} isOpen={isSidebarOpen} onLogout={handleLogout} />
                 <div className={`dashboard-content ${isSidebarOpen ? "sidebar-open" : "sidebar-closed"}`}>
-                    <h2>Welcome {user.firstName}!</h2>
                     <div className="dashboard-cards">
                         {dashboardCards.map((card, index) => (
                             <div key={index} className="dashboard-card" onClick={() => navigate(card.path)}>

@@ -1,46 +1,5 @@
 const API_URL = process.env.REACT_APP_API_URL;
 
-// Fetch LoggedIn User Details
-export const getUserDetails = async () => {
-    try {
-        const response = await fetch(`${API_URL}/auth/me`, {
-            method: "GET",
-            credentials: "include",
-            headers: { "Content-Type": "application/json" }
-        });
-
-        if (response.status === 401 || response.status === 403) {
-            throw new Error("User is not authenticated");
-        }
-
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error("Error fetching user details:", error);
-        return null;
-    }
-};
-
-// ✅ Fetch Employee Details Using `getEmployeeById`
-export const getEmployeeById = async (empId) => {
-    try {
-        const response = await fetch(`${API_URL}/employees/${empId}`, {
-            method: "GET",
-            credentials: "include",
-            headers: { "Content-Type": "application/json" }
-        });
-
-        if (!response.ok) {
-            throw new Error("Failed to fetch employee details");
-        }
-
-        return await response.json();
-    } catch (error) {
-        console.error("Error fetching employee details:", error);
-        return null;
-    }
-};
-
 // Login Request (Stores sessionId, accessToken, empId)
 export const login = async (empId, password) => {
     try {
@@ -110,5 +69,25 @@ export const logout = async () => {
 
     } catch (error) {
         console.error("Logout error:", error.message);
+    }
+};
+
+// Fetch Employee Details Using `getEmployeeById`
+export const getEmployeeById = async (empId) => {
+    try {
+        const response = await fetch(`${API_URL}/employee/${empId}`, {
+            method: "GET",
+            credentials: "include",
+            headers: { "Content-Type": "application/json" }
+        });
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch employee details");
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching employee details:", error);
+        return null;
     }
 };

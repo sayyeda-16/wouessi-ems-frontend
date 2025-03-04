@@ -10,8 +10,7 @@ const Sidebar = ({ user, navLinks, onLogout, isOpen }) => {
 
             <div className="sidebar-profile">
                 <img src={user.image || image } alt="Profile" className="profile-image" />
-                <h3>{user.empId}</h3>
-                <p>{user.name}</p>
+                <h3>{user.firstName + " " + user.lastName}</h3>
                 <p>{user.role}</p>
             </div>
 
