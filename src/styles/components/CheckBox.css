@@ -1,0 +1,9 @@
+.checkbox-input {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.checkbox-input:checked {
+    accent-color: #2b03a2;
+}
