@@ -4,5 +4,8 @@
     top: 10px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgb(231, 163, 80);
+    background-color: white;
+    padding: 20px;
+    color: black;
+    border-radius: 10px;
 }
