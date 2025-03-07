@@ -16,7 +16,8 @@ import Timesheets from "../../assets/images/Timesheets.png";
 import Footer from "../../components/layout/Footer";
 import Header from "../../components/layout/Header";
 import Sidebar from "../../components/layout/Sidebar";
-import { getEmployeeById, logout } from "../../services/authService";
+import { logout } from "../../services/authService";
+import { getEmployeeById } from "../../services/employeeService";
 import "../../styles/pages/Dashboard.css";
 
 const Dashboard = () => {

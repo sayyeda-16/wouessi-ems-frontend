@@ -15,7 +15,6 @@ export const login = async (empId, password) => {
             throw new Error(data.message || "Login failed");
         }
 
-        // Store sessionId and empId for Logout
         localStorage.setItem("sessionId", data.sessionId);
         localStorage.setItem("accessToken", data.accessToken);
         localStorage.setItem("empId", empId);
@@ -29,7 +28,6 @@ export const login = async (empId, password) => {
 // Logout Request (Ensure sessionId, empId and accessToken are sent)
 export const logout = async () => {
     try {
-        // Retrieve Required Data
         const sessionId = localStorage.getItem("sessionId");
         const empId = localStorage.getItem("empId");
         const accessToken = localStorage.getItem("accessToken");
@@ -38,7 +36,6 @@ export const logout = async () => {
             console.warn("Missing session data. Skipping logout request.");
         }
 
-        // Send Logout Request
         const response = await fetch(`${API_URL}/auth/logout`, {
             method: "POST",
             credentials: "include",
@@ -53,7 +50,6 @@ export const logout = async () => {
             throw new Error("Logout failed");
         }
 
-        // Clear All Authentication Data Before Redirecting
         localStorage.clear();
         sessionStorage.clear();
 
@@ -62,32 +58,11 @@ export const logout = async () => {
 
         console.log("Logout successful. Redirecting...");
 
-        // Delay Redirect to Ensure Cleanup Completes
         setTimeout(() => {
             window.location.replace("/");
         }, 500);
 
     } catch (error) {
         console.error("Logout error:", error.message);
-    }
-};
-
-// Fetch Employee Details Using `getEmployeeById`
-export const getEmployeeById = async (empId) => {
-    try {
-        const response = await fetch(`${API_URL}/employee/${empId}`, {
-            method: "GET",
-            credentials: "include",
-            headers: { "Content-Type": "application/json" }
-        });
-
-        if (!response.ok) {
-            throw new Error("Failed to fetch employee details");
-        }
-
-        return await response.json();
-    } catch (error) {
-        console.error("Error fetching employee details:", error);
-        return null;
     }
 };
