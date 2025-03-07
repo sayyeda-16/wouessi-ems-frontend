@@ -1,0 +1,45 @@
+.down {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 300px; 
+}
+
+.drop-label {
+    font-size: 1.3rem;
+    font-weight: 100;
+    color: black;
+}
+
+.drop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    max-width: 300px;
+    border: 1px solid #3A06D6;
+    padding: 0.7rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    margin: 1rem auto;
+    background-color: white;
+    color: #3A06D6;
+}
+
+.drop:focus {
+    box-shadow: 1px 1px 5px #3A06D6;
+    border: 1px solid #3A06D6;
+}
+
+.drop:focus-visible{
+    outline: none;
+}
+
+.drop:disabled {
+    background-color: grey;
+    border: 1px solid gray;
+    cursor: not-allowed;
+}

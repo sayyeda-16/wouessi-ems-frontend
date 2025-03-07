@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import Button from '../../components/common/Button';
-import PopUp from './popUp';
+import Dropdown from '../../components/common/DropDown';
+import "../../styles/components/Dropdown.css";
+
+
+const Options=["Emergency leave", "Maternity leave", "Sick leave", "Vacation"]
 
 const Leaves = () => {
-  const [showPopUp, setShowPopUp] = useState(false);
-
   return (
     <>
-      <Button text="Apply for Leave" className="btn-primary" onClick={() => setShowPopUp(true)} />
-      {showPopUp && <PopUp show={showPopUp} onClose={() => setShowPopUp(false)} />}
+      <Dropdown label={"Type "} alt={"Choose you case"} options = {Options}/>
     </>
   );
 };

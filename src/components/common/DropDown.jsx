@@ -1,43 +1,44 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import "../../styles/components/Dropdown.css";
 
-const Dropdown = ({ type = "button", text, onClick, className = "", disabled, options = [] }) => {
-    const [isOpen, setIsOpen] = useState(false);
+const Dropdown = ({ label, alt, options, onSelect }) => {
+  const [selected, setSelected] = useState("");
 
-    const toggleDropdown = () => {
-        if (!disabled) {
-            setIsOpen(!isOpen);
-        }
-    };
+  const handleChange = (event) => {
+    setSelected(event.target.value);
+    if (onSelect) {
+      onSelect(event.target.value);
+    }
+  };
 
-    return (
-        <div className={`dropdown ${className}`}>
-            <button type={type} className="dropdown-button" onClick={toggleDropdown} disabled={disabled}>
-                {text}
-            </button>
-            {isOpen && (
-                <ul className="dropdown-menu">
-                    {options.map((option, index) => (
-                        <li key={index} className="dropdown-item" onClick={() => console.log(option)}>
-                            {option}
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </div>
-    );
+  return (
+    <form className="down">
+      <label className="drop-label">{label}</label>
+      <select
+        id="dropdown"
+        value={selected}
+        onChange={handleChange}
+        className="drop"
+      >
+        <option value="" disabled className="drop-option">
+          {alt}
+        </option>
+        {options.map((option, index) => (
+          <option key={index} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+    </form>
+  );
 };
 
-// Update propTypes to accept either an array of objects or an array of strings
 Dropdown.propTypes = {
-    type: PropTypes.string,
-    text: PropTypes.string.isRequired,
-    onClick: PropTypes.func,
-    className: PropTypes.string,
-    disabled: PropTypes.bool,
-    options: PropTypes.array.isRequired
+  label: PropTypes.string.isRequired,
+  alt: PropTypes.string,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onSelect: PropTypes.func,
 };
-
 
 export default Dropdown;
+//Not this taking longuer than I'd like to admit
