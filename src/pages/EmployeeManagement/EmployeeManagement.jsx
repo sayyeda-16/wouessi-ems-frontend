@@ -5,10 +5,10 @@ import Button from "../../components/common/Button";
 import EmployeeForm from "../../components/forms/EmployeeForm";
 import Footer from "../../components/layout/Footer";
 import Header from "../../components/layout/Header";
+import EmployeeUpdateModal from "../../components/modals/EmployeeUpdateModal";
 import {
     createEmployee,
     getAllEmployees,
-    updateEmployee,
     updateEmployeeStatus
 } from "../../services/employeeService";
 import "../../styles/pages/EmployeeManagement.css";
@@ -17,8 +17,9 @@ const EmployeeManagement = () => {
     const [employees, setEmployees] = useState([]);
     const [activeTab, setActiveTab] = useState("VIEW EMPLOYEES LIST");
     const [searchQuery, setSearchQuery] = useState("");
-    const [selectedEmployee, setSelectedEmployee] = useState(null);
+    const [selectedEmployeeId, setSelectedEmployeeId] = useState(null);
     const [authToken, setAuthToken] = useState("");
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         fetchEmployees();
@@ -28,7 +29,7 @@ const EmployeeManagement = () => {
 
     const fetchEmployees = async () => {
         try {
-            const res = await getAllEmployees();
+            const res = await getAllEmployees(authToken);
             setEmployees(res.employees);
         } catch (err) {
             console.error(err);
@@ -50,23 +51,14 @@ const EmployeeManagement = () => {
         }
     };
 
-    const handleEditClick = (emp) => {
-        setSelectedEmployee(emp);
-        setActiveTab("UPDATE EMPLOYEE");
+    const handleEditClick = (empId) => {
+        setSelectedEmployeeId(empId);
+        setIsModalOpen(true);
     };
 
-    const handleUpdateEmployee = async (e) => {
-        e.preventDefault();
-        try {
-            await updateEmployee(selectedEmployee.empId, selectedEmployee, authToken);
-            fetchEmployees();
-            setActiveTab("VIEW EMPLOYEES LIST");
-            setSelectedEmployee(null);
-            alert("Employee updated successfully!");
-        } catch (error) {
-            console.error(error);
-            alert("Error updating employee.");
-        }
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+        setSelectedEmployeeId(null);
     };
 
     const handleDeactivateEmployee = async (empId) => {
@@ -125,7 +117,6 @@ const EmployeeManagement = () => {
                                 className={`nav-link ${activeTab === tab ? "active" : ""}`}
                                 onClick={() => {
                                     setActiveTab(tab);
-                                    setSelectedEmployee(null);
                                 }}
                             >
                                 {tab.charAt(0).toUpperCase() + tab.slice(1)}
@@ -214,7 +205,7 @@ const EmployeeManagement = () => {
                                         <td>{emp.employmentType}</td>
                                         <td>{emp.status}</td>
                                         <td>
-                                            <button className="btn btn-warning btn-sm" onClick={() => handleEditClick(emp)}>
+                                            <button className="btn btn-warning btn-sm" onClick={() => handleEditClick(emp.empId)}>
                                                 Edit
                                             </button>
                                         </td>
@@ -224,17 +215,14 @@ const EmployeeManagement = () => {
                         </table>
                     </div>
                 )}
-
-
-                {activeTab === "UPDATE EMPLOYEE" && selectedEmployee && (
-                    <div className="form-container">
-                        <h3 className="text-center">UPDATE Employee</h3>
-                        <EmployeeForm
-                            onSubmit={handleUpdateEmployee}
-                            initialData={selectedEmployee}
-                        />
-                    </div>
-                )}
+                
+                <EmployeeUpdateModal
+                    show={isModalOpen}
+                    onClose={handleCloseModal}
+                    empId={selectedEmployeeId}
+                    authToken={authToken}
+                    onUpdate={fetchEmployees}
+                />
 
                 {/* Deactivate Employee */}
                 {activeTab === "DEACTIVATE EMPLOYEE" && (

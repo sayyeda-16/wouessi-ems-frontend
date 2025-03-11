@@ -1,7 +1,7 @@
 const API_URL = process.env.REACT_APP_API_URL;
 
 // Fetch Employee Details
-export const getEmployeeById = async (empId) => {
+export const getEmployeeById = async (empId, authToken) => {
     try {
         const response = await fetch(`${API_URL}/employee/${empId}`, {
             method: "GET",
@@ -42,7 +42,7 @@ export const getAllEmployees = async (authToken) => {
     }
 };
 
-// ✅ Add Employee with FormData (updated to handle files properly)
+// Add Employee
 export const createEmployee = async (formData, authToken) => {
     try {
         const response = await fetch(`${API_URL}/employee/empAdd`, {
@@ -50,7 +50,6 @@ export const createEmployee = async (formData, authToken) => {
             credentials: "include",
             headers: {
                 "Authorization": `Bearer ${authToken}`
-                // DO NOT set Content-Type for FormData; browser does it automatically
             },
             body: formData
         });
@@ -71,23 +70,27 @@ export const createEmployee = async (formData, authToken) => {
 // Update Employee
 export const updateEmployee = async (empId, updatedData, authToken) => {
     try {
+        const isFormData = updatedData instanceof FormData;
         const response = await fetch(`${API_URL}/employee/${empId}`, {
             method: "PUT",
             credentials: "include",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${authToken}`
-            },
-            body: JSON.stringify(updatedData)
+            headers: isFormData
+                ? { "Authorization": `Bearer ${authToken}` }
+                : { 
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${authToken}`
+                  },
+            body: isFormData ? updatedData : JSON.stringify(updatedData)
         });
 
+        const result = await response.json();
         if (!response.ok) {
-            throw new Error("Failed to update employee");
+            console.error("Update failed:", result);
+            throw new Error(result.error || "Failed to update employee");
         }
-
-        return await response.json();
+        return result;
     } catch (error) {
-        console.error("Error updating employee:", error);
+        console.error("Error in updateEmployee API:", error);
         throw error;
     }
 };

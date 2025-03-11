@@ -97,13 +97,12 @@ const EmployeeForm = ({ onSubmit, initialData = {} }) => {
         }));
     
         data.append('addresses', JSON.stringify(addressesWithType));
-    
         onSubmit(data);
     };
     
     return (
         <form className="employee-form container" onSubmit={handleSubmit}>
-            <h2 className="form-title">ADD NEW EMPLOYEE</h2>
+            <h4 className="section-title">Employee Image</h4>
             {/* Upload Employee Picture */}
             <div className="form-group">
                 <label>Employee Picture</label>
