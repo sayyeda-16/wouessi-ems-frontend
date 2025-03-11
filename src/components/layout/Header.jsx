@@ -1,5 +1,5 @@
 import React from "react";
-import { FaBell, FaSearch, FaUser } from "react-icons/fa";
+import { FaBell, FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "../../styles/components/Header.css";
 
@@ -25,9 +25,9 @@ const Header = ({ toggleSidebar, isSidebarOpen }) => {
                 <Link to="/notifications">
                     <FaBell className="icon bell-icon" />
                 </Link>
-                <Link to="/profile">
+                {/* <Link to="/profile">
                     <FaUser className="icon profile-icon" />
-                </Link>
+                </Link> */}
             </div>
         </header>
     );

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../assets/icons/WouessiLogo.png";
-import LoginImage from "../../assets/images/WouessiLoginPageImage2.jpg";
+import LoginImage from "../../assets/images/WouessiLoginPageImage1.jpg";
 import Button from "../../components/common/Button";
 import CheckBox from "../../components/common/CheckBox";
 import TextBox from "../../components/common/TextBox";

@@ -63,7 +63,7 @@ const Profile = () => {
                 <div className="profile-sidebar">
                     <div className="profile-image-container">
                         <img
-                            src={employee.imageFolder || profile}
+                            src={profile || employee.imageFolder}
                             alt="Profile"
                             className="profile-image"
                         />
