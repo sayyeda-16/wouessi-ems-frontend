@@ -31,19 +31,22 @@ const Login = () => {
 
     return (
         <div className="login-container">
-            <div className="login-page-image">
-                <img src={LoginImage} alt="Login Page Company Image" />
+            <div className="login-left">
+                <div className="login-image">
+                    <img src={LoginImage} alt="Login Page Image" />
+                </div>
             </div>
+
             <div className="form-login">
                 <div className="company-logo">
-                    <img src={Logo} alt="Wouessi Company Logo" />
+                    <img src={Logo} alt="Wouessi Digital Logo" />
                 </div>
                 <div className="form-login-header">
                     <h1>Wouessi Digital</h1>
                 </div>
 
                 <form onSubmit={handleLogin}>
-                    <div className="username-field">
+                    <div className="input-field">
                         <label htmlFor="empId">Employee ID</label>
                         <TextBox
                             id="empId"
@@ -55,7 +58,7 @@ const Login = () => {
                         />
                     </div>
 
-                    <div className="password-field">
+                    <div className="input-field">
                         <label htmlFor="password">Password</label>
                         <TextBox
                             id="password"
@@ -85,9 +88,8 @@ const Login = () => {
                     <div className="login-button">
                         <Button type="submit" text="Login" className="btn-primary" />
                     </div>
+                    {error && <p className="error-message">{error}</p>}
                 </form>
-
-                {error && <p style={{ color: "red" }}>{error}</p>}
             </div>
         </div>
     );

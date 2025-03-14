@@ -1,0 +1,168 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.contact-form {
+    background: #f8f8f8;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: auto;
+}
+
+.contact-form h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.contact-form .form-control {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.contact-form textarea {
+    height: 120px;
+    resize: none;
+}
+
+.contact-form button {
+    background: #3300ff;
+    color: white;
+    font-size: 1.2rem;
+    padding: 0.75rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 1rem;
+    width: 100%;
+    font-weight: bold;
+}
+
+.contact-form button:hover {
+    background: #2500cc;
+}
+
+.subscription {
+    background: #3300ff;
+    color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 2rem;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.subscription h2 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.subscription p {
+    font-size: 1.1rem;
+}
+
+.subscription .input-group {
+    max-width: 500px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.subscription input {
+    flex-grow: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.subscription button {
+    font-size: 1rem;
+    padding: 12px;
+    border-radius: 0 5px 5px 0;
+    background: white;
+    color: #3300ff;
+    border: none;
+    font-weight: bold;
+    width: auto;
+    min-width: 100px;
+}
+
+.subscription button:hover {
+    background: #ddd;
+    color: black;
+}
+
+@media (max-width: 460px) {
+    .contact-form {
+        padding: 1.2rem;
+        max-width: 95%;
+    }
+
+    .subscription {
+        padding: 1.2rem;
+        max-width: 95%;
+    }
+
+    .subscription .input-group {
+        flex-direction: column;
+        max-width: 100%;
+    }
+
+    .subscription input {
+        width: 100%;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .subscription button {
+        width: 100%;
+        border-radius: 5px;
+    }
+}
+
+@media (min-width: 461px) and (max-width: 768px) {
+    .contact-form {
+        padding: 1.5rem;
+        max-width: 85%;
+    }
+
+    .subscription {
+        padding: 1.5rem;
+        max-width: 85%;
+    }
+
+    .subscription .input-group {
+        max-width: 450px;
+    }
+}
+
+@media (min-width: 769px) {
+    .contact-form {
+        max-width: 800px;
+    }
+
+    .subscription {
+        max-width: 900px;
+    }
+
+    .subscription .input-group {
+        max-width: 500px;
+    }
+}

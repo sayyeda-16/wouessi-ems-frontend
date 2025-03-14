@@ -7,7 +7,7 @@ const Header = ({ toggleSidebar, isSidebarOpen }) => {
     return (
         <header className="header">
             <button className="hamburger-btn" onClick={toggleSidebar}>
-                {isSidebarOpen ? "✖" : "☰"}
+                {isSidebarOpen ? "X" : "☰"}
             </button>
 
             <nav className="nav-links">

@@ -230,7 +230,7 @@ const EmployeeForm = ({ onSubmit, initialData = {} }) => {
                 <div className="col-md-4"><label>Citizenship ID</label><input name="citizenshipId" className="form-control" onChange={handleChange} value={formData.citizenshipId} /></div>
             </div>
 
-            {/* Upload Resume */}
+            {/* Upload Docs */}
             <h4 className="section-title">Upload Resume</h4>
             <div className="form-group">
                 <input type="file" name="resume" className="form-control-file" onChange={handleFileChange} />
