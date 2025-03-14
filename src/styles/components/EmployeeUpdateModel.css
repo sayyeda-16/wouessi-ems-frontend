@@ -1,0 +1,24 @@
+.employee-update-modal .modal-content {
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.employee-update-modal .modal-header {
+    background-color: #2b03a2;
+    color: white;
+    font-weight: bold;
+}
+
+.employee-update-modal .modal-title {
+    font-size: 1.5rem;
+}
+
+.employee-update-modal .modal-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.employee-update-modal .btn {
+    font-weight: bold;
+}
