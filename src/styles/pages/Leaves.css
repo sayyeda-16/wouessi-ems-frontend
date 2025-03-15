@@ -1,0 +1,162 @@
+.head-row{
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-row{
+  display: flex;
+  justify-content: left;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+/*purpleBtn*/
+.purplebtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  max-width: 300px;
+  padding: 0.7rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  margin: 1rem auto;
+  background-color: #2b03a2;
+  color: #ffffff;
+  transition: background 0.3s ease;
+}
+
+.purplebtn:hover {
+  background-color: #3A06D6;
+}
+
+.purplebtn:disabled {
+  background-color: grey;
+  cursor: not-allowed;
+}
+
+/*requests*/
+.requests-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: "Inter", sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  font-weight: 600;
+  font-size: 16px;
+  color: #333;
+}
+
+.leaves-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 14px 18px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  font-weight: 500;
+  color: #444;
+}
+
+th {
+  background-color: #f9f9f9;
+  font-size: 14px;
+  text-transform: capitalize;
+  font-weight: 600;
+  color: #444;
+}
+
+td {
+  background-color: white;
+}
+  
+.pending {
+  background-color: #cce5ff;
+}
+
+.rejected {
+  background-color: #f8d7da;
+}
+
+.accepted {
+  background-color: #d4edda;
+}
+.action-btn {
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  padding: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+}
+
+.action-btn .dots {
+  font-size: 18px;
+  color: #777;
+}
+
+.action-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+  transform: scale(1.05);
+}
+
+.action-btn:active {
+  background: rgba(0, 0, 0, 0.2);
+  transform: scale(0.95);
+}
+
+/*Sidebar*/
+.lsidebar {
+  width: auto;
+  height: 100vh;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.logo {
+  color: #2b03a2;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.menu-item {
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #444;
+  display: block;
+}
+
+.menu-item:hover {
+  background-color: #ddd;
+}
+
+.active {
+  background-color: #2b03a2;
+  color: white;
+}
+
