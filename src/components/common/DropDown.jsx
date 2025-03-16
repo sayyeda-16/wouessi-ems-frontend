@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { useState } from "react";
 import "../../styles/components/Dropdown.css";
 
-const Dropdown = ({ label, alt, options, onSelect }) => {
+const Dropdown = ({ label, alt, options, onSelect, className }) => {
   const [selected, setSelected] = useState("");
 
   const handleChange = (event) => {
@@ -13,8 +13,8 @@ const Dropdown = ({ label, alt, options, onSelect }) => {
   };
 
   return (
-    <form className="down">
-      <label className="drop-label">{label}</label>
+    <form className={`down ${className}`}>
+      <label>{label}</label>
       <select
         id="dropdown"
         value={selected}

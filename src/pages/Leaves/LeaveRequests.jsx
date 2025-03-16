@@ -50,8 +50,8 @@ const LeaveRequests = () => {
 
   return (
     <div className="requests-container">
-      <div className="header">
-        <h5>Pending leave request</h5>
+      <div className="table-header">
+        <h5>Time off requests summary</h5>
         <Dropdown 
           label="" 
           alt="Status" 
@@ -59,7 +59,7 @@ const LeaveRequests = () => {
           onSelect={handleStatusChange} 
         />
       </div>
-
+    <div className="table-wrap">
       <table className="leaves-table">
         <thead>
           <tr>
@@ -93,15 +93,16 @@ const LeaveRequests = () => {
                   <Tag text={req.status} className={req.status.toLowerCase()} />
                 </td>
                 <td className="actions">
-  <button className="action-btn">
-    <span className="dots">⋮</span>
-  </button>
-</td>
+                  <button className="action-btn">
+                    <span className="dots">⋮</span>
+                  </button>
+                </td>
               </tr>
-            ))
-          )}
-        </tbody>
-      </table>
+              ))
+            )}
+          </tbody>  
+        </table>
+      </div>
     </div>
   );
 };

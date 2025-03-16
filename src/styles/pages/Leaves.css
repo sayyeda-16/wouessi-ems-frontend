@@ -1,3 +1,13 @@
+body{
+  background-color: #F6F6F6 !important;
+}
+
+body h5{
+  font-weight: bold;
+  font-size: 15px;
+  color: black;
+}
+
 .head-row{
   justify-content: space-between;
   align-items: center;
@@ -11,12 +21,11 @@
 }
 
 /*purpleBtn*/
-.purplebtn {
+.btn.purplebtn {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80%;
-  max-width: 300px;
+  width: auto;
   padding: 0.7rem;
   font-size: 1rem;
   font-weight: bold;
@@ -24,17 +33,18 @@
   border-radius: 10px;
   cursor: pointer;
   text-align: center;
-  margin: 1rem auto;
+  margin: 10px;
   background-color: #2b03a2;
   color: #ffffff;
   transition: background 0.3s ease;
 }
 
-.purplebtn:hover {
+.btn.purplebtn:hover {
   background-color: #3A06D6;
+  color: white;
 }
 
-.purplebtn:disabled {
+.btn.purplebtn:disabled {
   background-color: grey;
   cursor: not-allowed;
 }
@@ -48,34 +58,34 @@
   font-family: "Inter", sans-serif;
 }
 
-.header {
+.table-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between !important;
   align-items: center;
   margin-bottom: 15px;
   font-weight: 600;
   font-size: 16px;
-  color: #333;
+}
+
+.table-wrap {  
+  border: 1px solid #E4E4E4 !important;
+  border-radius: 12px !important;
+  overflow: hidden;
 }
 
 .leaves-table {
   width: 100%;
   border-collapse: collapse;
-  border-radius: 10px;
-  overflow: hidden;
+  font-size: 14px;
 }
 
 th, td {
   padding: 14px 18px;
   text-align: left;
-  border-bottom: 1px solid #eee;
-  font-size: 14px;
   font-weight: 500;
-  color: #444;
 }
 
 th {
-  background-color: #f9f9f9;
   font-size: 14px;
   text-transform: capitalize;
   font-weight: 600;
@@ -84,6 +94,7 @@ th {
 
 td {
   background-color: white;
+  border-top: 1px solid #E4E4E4 !important;
 }
   
 .pending {
@@ -128,12 +139,24 @@ td {
 
 /*Sidebar*/
 .lsidebar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
   width: auto;
   height: 100vh;
-  background-color: white;
   padding: 20px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
+}
+
+.lsidebar::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%; 
+  height: 90%; 
+  width: 1px; 
+  background-color: #C3C3C3; 
+  transform: translateY(-50%); 
 }
 
 .logo {
@@ -160,3 +183,10 @@ td {
   color: white;
 }
 
+form{
+  display: inline-block;
+ }
+ 
+ .down{
+  width: auto;
+ }

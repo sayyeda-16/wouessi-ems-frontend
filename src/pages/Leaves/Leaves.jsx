@@ -34,10 +34,10 @@ const Leaves = () => {
           </Col>
           <Col xs={10}>
             <Row className="head-row">
-              <Col xs={4}>
+              <Col xs={2}>
                 <h5>Leave avalability</h5>
               </Col>
-              <Col xs={4}>
+              <Col xs={2}>
                 <Button onClick={handleOpenPopup} className={'purplebtn'} text={"Apply for leave"} />
                 {showPopup && <LeaveRequestPopup onClose={handleClosePopup} />}
               </Col>
