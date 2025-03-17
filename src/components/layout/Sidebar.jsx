@@ -1,16 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import image from "../../assets/icons/profile.jpg";
 import "../../styles/components/Sidebar.css";
 
-const Sidebar = ({ employee, navLinks, onLogout, isOpen }) => {
+const Sidebar = ({ user, navLinks, onLogout, isOpen }) => {
     return (
         <div className={`sidebar ${isOpen ? "open" : "closed"}`}>
             <div className="sidebar-header">Welcome</div>
 
             <div className="sidebar-profile">
-                <img src={employee.image} alt="Profile" className="profile-image" />
-                <h3>{employee.name}</h3>
-                <p>{employee.role}</p>
+                <img src={user.image || image } alt="Profile" className="profile-image" />
+                <h3>{user.firstName + " " + user.lastName}</h3>
+                <p>{user.role}</p>
             </div>
 
             <div className="sidebar-content">
@@ -21,7 +22,7 @@ const Sidebar = ({ employee, navLinks, onLogout, isOpen }) => {
                             <Link to={item.path}>{item.name}</Link>
                         </li>
                     ))}
-                    
+
                     <li className="logout-nav">
                         <button className="logout-btn" onClick={onLogout}>
                             Logout
