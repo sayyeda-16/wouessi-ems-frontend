@@ -19,10 +19,10 @@ const Leaves = () => {
   };
 
   const leaveCards = [
-    { leaveType: "Sick Leave", remaining: 3, total: 10, color: "#d7cff3" },
-    { leaveType: "Annual Leave", remaining: 1, total: 10, color: "#a4eaff" },
-    { leaveType: "Casual Leave", remaining: 5, total: 10, color: "#a0f3c3" },
-    { leaveType: "Unpaid Leave", remaining: 9, total: 10, color: "#f8a6a6" },
+    { leaveType: "Sick Leave", remaining: 3, total: 10, color: "#D7CFF3" },
+    { leaveType: "Annual Leave", remaining: 1, total: 10, color: "#A4EAFF" },
+    { leaveType: "Casual Leave", remaining: 5, total: 10, color: "#ABFBD3" },
+    { leaveType: "Unpaid Leave", remaining: 9, total: 10, color: "#FCA1A1" },
   ];
 
   return (

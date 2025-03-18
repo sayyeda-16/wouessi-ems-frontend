@@ -32,3 +32,8 @@ const CardV2 = ({ leaveType, remaining, total, color }) => {
 };
 
 export default CardV2;
+/*
+Missing:
+Center action
+Background color on proress
+*/
