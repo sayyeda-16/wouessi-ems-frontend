@@ -8,10 +8,11 @@ const CardV2 = ({ leaveType, remaining, total, color }) => {
     strokeDasharray - (percentage / 100) * strokeDasharray;
 
   return (
-    <div className="card">
-      <p className="remaining">Remaining</p>
-      <h2 className="leaveType">{leaveType}</h2>
-
+    <div className="V2">
+      <div className="v2-top">
+        <h2 className="remaining">Remaining</h2>
+        <h2 className="leaveType">{leaveType}</h2>
+      </div>
       <div className="cricleRemainingContainer">
         <svg className="progressRing" viewBox="0 0 36 36">
           <path className="progress-ring-bg" d="M 2 18 A 16 16 0 0 1 34 18" />
