@@ -1,37 +1,32 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import "../../styles/pages/Leaves.css";
 import Dropdown from "../../components/common/DropDown.jsx";  
 import Tag from "../../components/common/Tag";  
 import { getAllLeaves } from "../../services/leavesService.js";  
 
-const LeaveRequests = () => {
-  const { empID } = useParams();
-
+const LeaveRequests = ({empId}) => {
   const [requests, setRequests] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
   useEffect(() => {
+    console.log("Fetching leaves for empId:", empId);
     const fetchLeaves = async () => {
+      if (!empId) return;
       setLoading(true);
       try {
-        const data = await getAllLeaves(empID);
-        if (data) {
-          setRequests(data);
-        } else {
-          setRequests([]);
-        }
+        const data = await getAllLeaves(empId);
+        setRequests(data || []);
       } catch (err) {
         setError("Failed to fetch leave requests.");
       } finally {
         setLoading(false);
       }
     };
-    
+  
     fetchLeaves();
-  }, [empID]);
+  }, [empId]);
 
   const handleStatusChange = (value) => {
     setSelectedStatus(value === "Status" ? "" : value);

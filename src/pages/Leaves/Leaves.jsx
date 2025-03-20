@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Row, Col} from "react-bootstrap";
+import { useParams } from "react-router-dom";
 import LeaveRequestPopup from "./LeaveRequestPopup.jsx";
 import Button from "../../components/common/Button.jsx";
 import CardV2 from "../../components/common/CardV2.jsx";
@@ -8,6 +9,8 @@ import "../../styles/pages/Leaves.css";
 import Sidebar from "./LeavesSidebar.jsx";
 
 const Leaves = () => {
+  //const empId = localStorage.getItem("empId");
+  const { empId } = useParams();
   const [showPopup, setShowPopup] = useState(false);
 
   const handleOpenPopup = () => {
@@ -57,7 +60,7 @@ const Leaves = () => {
             </Row> 
             <Row>
               <div className="container-fluid">
-              <LeaveRequests/>
+              <LeaveRequests empId={empId}/>
               </div>
             </Row>        
           </Col>

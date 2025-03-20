@@ -1,18 +1,20 @@
 const API_URL = process.env.REACT_APP_API_URL;
+console.log("API_URL:", API_URL);
 
 //Fetch all leaves
 export const getAllLeaves = async (empID) =>{
+    console.log("empID from useParams:", empID);
     try{
         const response = await fetch(`${API_URL}/leaves/${empID}`,{
         method:"GET",
         credentials: "include",
         headers: {"Content-Type":"application/json"}
     });
-
+    
     if(!response.ok){
         throw new Error("No leaves found");
     }
-    
+    console.log(response);
     return await response.json();
     } catch (error) {
         console.error("Error fetching leaves:", error);
@@ -43,12 +45,14 @@ export const createLeave = async (formData, empID) => {
 };
 
 //Update leaves
-export const updateLeave = async (updatedData, empID) => {
+export const updateLeave = async (updatedData, empId) => {
     try{
-        const response = await fetch(`${API_URL}/leaves/${empID}`,{
+        const isFormData = updatedData instanceof FormData; 
+        const response = await fetch(`${API_URL}/leaves/${empId}`,{
             method:"PUT",
             credentials:"include",
-            body: isFormData ? updatedData : JSON.stringify(updatedData)
+            body: isFormData ? updatedData : JSON.stringify(updatedData),
+            headers: isFormData ? {} : { "Content-Type": "application/json" }
         });
 
         const result = await response.json();
