@@ -1,6 +1,6 @@
-.card {
-  width: 150px;
-  height: 150px;
+.V2 {
+  min-width: 180px;
+  min-height: 180px;
   background: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -13,14 +13,22 @@
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-.card:hover {
+.V2:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
+.v2-top{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
 .remaining {
-  color: grey;
-  font-size: 15px;
+  color: #CCCCCC;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
 }
 
 .leaveType {
@@ -33,7 +41,7 @@
   position: relative;
   width: 80px;
   height: 80px;
-  margin: 10px auto;
+  margin: 10px  0 -20px 0;
 }
 .progress-ring-bg {
   fill: none;
@@ -52,6 +60,7 @@
   stroke-linecap: round;
   transition: stroke-dashoffset 0.5s ease-in-out;
 }
+
 .leave-count {
   position: absolute;
   top: 50%;

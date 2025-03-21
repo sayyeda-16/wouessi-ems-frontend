@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Row, Col} from "react-bootstrap";
+import { useParams } from "react-router-dom";
 import LeaveRequestPopup from "./LeaveRequestPopup.jsx";
 import Button from "../../components/common/Button.jsx";
 import CardV2 from "../../components/common/CardV2.jsx";
@@ -8,6 +9,8 @@ import "../../styles/pages/Leaves.css";
 import Sidebar from "./LeavesSidebar.jsx";
 
 const Leaves = () => {
+  //const empId = localStorage.getItem("empId");
+  const { empId } = useParams();
   const [showPopup, setShowPopup] = useState(false);
 
   const handleOpenPopup = () => {
@@ -19,10 +22,10 @@ const Leaves = () => {
   };
 
   const leaveCards = [
-    { leaveType: "Sick Leave", remaining: 3, total: 10, color: "#d7cff3" },
-    { leaveType: "Annual Leave", remaining: 1, total: 10, color: "#a4eaff" },
-    { leaveType: "Casual Leave", remaining: 5, total: 10, color: "#a0f3c3" },
-    { leaveType: "Unpaid Leave", remaining: 9, total: 10, color: "#f8a6a6" },
+    { leaveType: "Sick Leave", remaining: 3, total: 10, color: "#D7CFF3" },
+    { leaveType: "Annual Leave", remaining: 1, total: 10, color: "#A4EAFF" },
+    { leaveType: "Casual Leave", remaining: 5, total: 10, color: "#ABFBD3" },
+    { leaveType: "Unpaid Leave", remaining: 9, total: 10, color: "#FCA1A1" },
   ];
 
   return (
@@ -57,7 +60,7 @@ const Leaves = () => {
             </Row> 
             <Row>
               <div className="container-fluid">
-              <LeaveRequests/>
+              <LeaveRequests empId={empId}/>
               </div>
             </Row>        
           </Col>
