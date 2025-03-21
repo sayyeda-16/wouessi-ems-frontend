@@ -1,0 +1,161 @@
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background: white;
+    padding: 25px;
+    padding-left: 50px;
+    padding-right: 50px;
+    width: 1200; 
+    height: 800px; 
+    border-radius: 12px;
+    text-align: left; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+    margin: 0 auto; 
+    
+    
+}
+
+.CircularProgressbar-path {
+    stroke-width: 4px;  
+}
+
+h1{
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: -1px;
+    font-weight: 600;
+
+
+}
+
+.time-off-balance {
+    margin-left: 180px;
+    margin-bottom: 55px;
+  
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-group {
+    margin-bottom: 15px;
+    max-height: auto;
+    
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    font-family: 'Poppins', sans-serif;
+    
+    
+}
+
+
+.dropdown-label {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: -0.2px;
+    color: #131313;
+}
+
+
+.submit-button {
+    background-color: #2703A5;
+    color: white;
+    padding: 12px 18px;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    
+    font-family: 'Poppins', sans-serif;
+}
+
+.close-button {
+    background-color: white;
+    color: #2703A5;
+    border-color: #2703A5;
+    border-width: 2px;
+    font-weight: 400;
+    padding: 12px 18px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px;
+    margin-top: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-group table {
+    width: "100%";
+    border-collapse: collapse;
+}
+
+.supporting-docs-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+    
+    
+
+
+}
+
+h4{
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+    margin-left: 20px;
+    
+}
+
+.field-labels {
+    font-size: smaller;
+    color: #3C3C3C;
+    font-family: 'Poppins', sans-serif;
+
+    opacity: 0.5;
+}
