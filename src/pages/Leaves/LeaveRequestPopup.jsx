@@ -99,7 +99,7 @@ const LeaveRequestPopup = ({ onClose }) => {
                 </div>
               </div> 
                 <div>
-                  <hr style={{width: "100%", marginTop: "20px", marginBottom: "30px", marginLeft: "5px", opacity: 0.25 }} />
+                  <hr style={{width: "100%", marginTop: "20px", marginBottom: "30px", opacity: 0.25 }} />
                 </div>
               <div> 
                 <div className="form-group" style={{ width: "100%", height: "60%" }}>
