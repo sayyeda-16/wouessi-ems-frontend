@@ -1,0 +1,69 @@
+.dropdown-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 22px;
+    
+    
+}
+
+.dropdown-label {
+    font-size: 20px;
+    font-weight: 400;
+    color: black;
+    min-width: 80px;
+    text-align: right;
+    font-family: 'Poppins', sans-serif;
+    
+    
+}
+
+.dropdown-container {
+    position: relative;
+    display: inline-block; 
+    width: auto;
+    margin-left: -70px;
+    
+    
+}
+
+.dropdown-select {
+    width: auto; 
+    min-width: min-content;
+    padding: 10px 30px 10px 15px;
+    font-size: 16px;
+    font-weight: 550;
+    font-family: 'Poppins', sans-serif;
+    border: 2px solid #2703A5;
+    color: #2703A5;
+
+    background-color: white;
+    border-radius: 5px;
+    appearance: none;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%232703A5'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+  
+   
+}
+
+.supporting-docs-container {
+    display: flex;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-shrink: 0; 
+    flex-wrap: nowrap; 
+    width: 100%; 
+}
+
+
+
+.dropdown-select:hover,
+.dropdown-select:focus {
+    border-color: #2703A5 !;
+    outline: none;
+}
