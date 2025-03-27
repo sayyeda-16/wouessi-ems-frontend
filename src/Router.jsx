@@ -7,11 +7,12 @@ import EmployeeManagement from "./pages/EmployeeManagement/EmployeeManagement";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import Login from "./pages/Login/Login";
 import Profile from "./pages/Profile/Profile";
-
+import TaskForm from './components/forms/TaskForm';
 const AppRouter = () => {
     return (
         <Router>
             <Routes>
+                <Route path="/create-task" element={<TaskForm />} />
                 <Route path="/" element={<Login />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/forgot-password" element={<ForgotPassword />} />
