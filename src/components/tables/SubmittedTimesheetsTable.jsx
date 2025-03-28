@@ -40,22 +40,33 @@ const statusStyle = {
 };
 export default function SubmittedTimesheetsTable() {
   return (
-    <main className="submittedtimesheets-wrapper">
-      <table>
-        <caption>Submitted TimeSheets</caption>
+    <main aria-label="Table Wrapper" className="submittedtimesheets-wrapper">
+      <table role="table" aria-label="Submitted Timesheets">
+        <caption aria-label="Table Caption">Submitted TimeSheets</caption>
         <tbody>
-          <tr>
+          <tr role="row">
             {columns.map((column, index) => {
-              return <th key={column + index}>{column}</th>;
+              return (
+                <th role="columnheader" key={column + index}>
+                  {column}
+                </th>
+              );
             })}
           </tr>
           {dummyData.map((data, index) => {
             return (
-              <tr key={data + index}>
-                <td data-cell="employee">{data.employee}</td>
-                <td data-cell="week">{data.week}</td>
-                <td data-cell="total hours">{data.totalHours}</td>
+              <tr role="row" key={data + index}>
+                <td role="cell" data-cell="employee">
+                  {data.employee}
+                </td>
+                <td role="cell" data-cell="week">
+                  {data.week}
+                </td>
+                <td role="cell" data-cell="total hours">
+                  {data.totalHours}
+                </td>
                 <td
+                  role="cell"
                   data-cell="status"
                   style={{
                     color: `${statusStyle[data.status]}`,
