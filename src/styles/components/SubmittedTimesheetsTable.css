@@ -1,0 +1,37 @@
+/*main page wrapper*/
+.main-wrapper {
+  width: 100%;
+  min-height: calc(100vh - 60px);
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 2rem;
+}
+/*Wrapper for submitted timesheets table*/
+.submittedtimesheets-wrapper {
+  width: min(900px, 100% - 3rem);
+  margin-inline: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+td,
+th,
+caption {
+  text-align: left;
+  padding: 1rem;
+}
+th {
+  background: linear-gradient(180deg, #130931, #3d1ba0);
+  color: white;
+  font-weight: bolder;
+}
+caption {
+  caption-side: top;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: white;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #2b03a2, #3a06d6);
+}
