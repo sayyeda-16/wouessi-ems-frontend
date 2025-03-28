@@ -9,24 +9,26 @@ import Login from "./pages/Login/Login";
 import Leaves from "./pages/Leaves/Leaves";
 import Profile from "./pages/Profile/Profile";
 import SubmittedTimesheets from "./pages/Timesheets/SubmittedTimesheets";
+import Timesheets from "./pages/Timesheets/Timesheets";
 
 const AppRouter = () => {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/leaves" element={<Leaves />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/contact" element={<ContactUs />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/employee-management" element={<EmployeeManagement />} />
-        <Route path="/submitted-timesheets" element={<SubmittedTimesheets />} />
-      </Routes>
-    </Router>
-  );
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<Login />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/leaves" element={<Leaves />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/contact" element={<ContactUs />} />
+                <Route path="/about" element={<AboutUs />} />
+                <Route path="/employee-management" element={<EmployeeManagement />} />
+                <Route path="/timesheets" element={<Timesheets />} />
+                <Route path="/submitted-timesheets" element={<SubmittedTimesheets />} />
+            </Routes>
+        </Router>
+    );
 };
 
 export default AppRouter;
