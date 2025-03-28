@@ -8,6 +8,9 @@ import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import Login from "./pages/Login/Login";
 import Leaves from "./pages/Leaves/Leaves";
 import Profile from "./pages/Profile/Profile";
+import OffboardingPage from './pages/Offboarding/OffboardingPage';
+
+
 
 const AppRouter = () => {
     return (
@@ -21,7 +24,10 @@ const AppRouter = () => {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/contact" element={<ContactUs />} />
                 <Route path="/about" element={<AboutUs />} />
-                <Route path="/employee-management" element={<EmployeeManagement />} />
+                <Route path="/employee-management" element={<EmployeeManagement />} />       
+
+                <Route path="/offboarding" element={<OffboardingPage />} />
+                                  
             </Routes>
         </Router>
     );
