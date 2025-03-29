@@ -13,15 +13,62 @@ import {
 } from "../../services/employeeService";
 import "../../styles/pages/EmployeeManagement.css";
 
+// Email template as a string with placeholders
+const emailTemplate = `
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .email-container {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+        .header {
+            background-color: #f5f5f5;
+            padding: 10px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h2>Certificate of Achievement</h2>
+        </div>
+        <div class="content">
+            <p>Dear {Name},</p>
+            <p>Congratulations! We are pleased to inform you that you have been awarded the {CertificateType} certificate.</p>
+            <p>This certificate recognizes your outstanding performance and dedication. Please find your certificate attached to this email.</p>
+            <p>Best regards,<br>The Management Team</p>
+        </div>
+        <div class="footer">
+            <p>© 2025 Your Company Name. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+`;
+
 const EmployeeManagement = () => {
   const [employees, setEmployees] = useState([]);
   const [activeTab, setActiveTab] = useState("VIEW EMPLOYEES LIST");
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedRole, setSelectedRole] = useState("all");
   const [selectedEmployeeId, setSelectedEmployeeId] = useState(null);
   const [authToken, setAuthToken] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedEmployees, setSelectedEmployees] = useState([]);
-  const [sendMessage, setSendMessage] = useState("");
 
   useEffect(() => {
     fetchEmployees();
@@ -72,33 +119,17 @@ const EmployeeManagement = () => {
     }
   };
 
-  const handleSelectEmployee = (empId) => {
-    setSelectedEmployees((prev) =>
-      prev.includes(empId)
-        ? prev.filter((id) => id !== empId)
-        : [...prev, empId]
-    );
-  };
+  const filteredEmployees = employees.filter((emp) => {
+    const matchesSearch =
+      `${emp.empId} ${emp.firstName} ${emp.middleName} ${emp.lastName} ${emp.email}`
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase());
 
-  const handleSendCertificates = () => {
-    if (selectedEmployees.length === 0) {
-      setSendMessage("Please select at least one employee.");
-      setTimeout(() => setSendMessage(""), 3000);
-      return;
-    }
+    const matchesRole =
+      selectedRole === "all" || emp.employmentType === selectedRole;
 
-    setSendMessage(
-      `Certificates sent successfully to ${selectedEmployees.length} employee(s)!`
-    );
-    setSelectedEmployees([]);
-    setTimeout(() => setSendMessage(""), 3000);
-  };
-
-  const filteredEmployees = employees.filter((emp) =>
-    `${emp.empId} ${emp.firstName} ${emp.middleName} ${emp.lastName} ${emp.email}`
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase())
-  );
+    return matchesSearch && matchesRole;
+  });
 
   const exportToExcel = () => {
     if (employees.length === 0) {
@@ -131,6 +162,7 @@ const EmployeeManagement = () => {
     <>
       <Header />
       <div className="container employee-management">
+        {/* Navigation Tabs */}
         <ul className="nav nav-tabs mb-3">
           {[
             "VIEW EMPLOYEES LIST",
@@ -151,30 +183,35 @@ const EmployeeManagement = () => {
           ))}
         </ul>
 
+        {/* Search Bar & Export Button */}
         {activeTab === "VIEW EMPLOYEES LIST" && (
-          <div className="search-container mb-3">
-            <input
-              type="text"
-              placeholder="Search employees..."
-              className="form-control search-input"
-              value={searchQuery}
-              onChange={handleSearch}
-            />
-            <Button
-              text="Send Selected Certificates"
-              className="btn btn-primary me-2"
-              onClick={handleSendCertificates}
-            />
+          <div className="search-container">
+            <div className="search-filters">
+              <input
+                type="text"
+                placeholder="Search employees..."
+                className="form-control search-input"
+                value={searchQuery}
+                onChange={handleSearch}
+              />
+              <select
+                className="form-control role-filter"
+                value={selectedRole}
+                onChange={handleRoleFilter}
+                aria-label="Filter by role"
+              >
+                <option value="all">All Roles</option>
+                <option value="Full-Time">Full-Time</option>
+                <option value="Part-Time">Part-Time</option>
+                <option value="Contract">Contract</option>
+                <option value="Internship">Internship</option>
+              </select>
+            </div>
             <Button
               text="Export to Excel"
               className="btn-export"
               onClick={exportToExcel}
             />
-            {sendMessage && (
-              <div className="alert alert-success mt-2" role="alert">
-                {sendMessage}
-              </div>
-            )}
           </div>
         )}
 
@@ -292,6 +329,7 @@ const EmployeeManagement = () => {
           onUpdate={fetchEmployees}
         />
 
+        {/* Deactivate Employee */}
         {activeTab === "DEACTIVATE EMPLOYEE" && (
           <div className="table-responsive">
             <table className="table table-bordered">
