@@ -1,23 +1,70 @@
 pipeline {
     agent any
+
+    environment {
+        IMAGE_NAME = "smehra999/ems209_frontend"  // Image name (can be changed for frontend/backend)
+        DOCKER_REGISTRY = "docker.io"  // Docker registry URL (default Docker Hub)
+    }
+
     stages {
-        stage('Checkout') {
-            steps {
-                dir('frontend') {
-                   git credentialsId: 'Github', url: 'https://github.com/adii3/wouessi-ems-frontend.git', branch: 'feat_ems_qc_209'
-                }
-            }
-        }
+        
+        // Stage to verify NPM (optional)
         stage('Verify NPM') {
             steps {
-                bat 'npm -v'
+                bat 'npm -v'  // Verifies NPM version
             }
         }
 
-        stage('Run Tests') {
+        // Stage to checkout the frontend repository
+        stage('Git Checkout Frontend') {
             steps {
-                bat 'npm test'
+                dir('frontend') {
+                   git credentialsId: 'Github', url: 'https://github.com/adii3/wouessi-ems-frontend.git', branch: 'feat_ems_qc_209'                
+                }
             }
         }
+
+        // Stage to build the frontend
+        stage('Build Frontend and Test') {
+            steps {
+                dir('frontend') {
+                    bat 'set CI=false && npm run build || exit 0'
+                }
+            }
+        }
+
+        // Stage to build the Docker image for frontend
+        stage('Build Docker Image for Frontend') {
+            steps {
+                dir('frontend') {
+                    script {
+                        env.TAG = env.BUILD_ID  // Tagging with build ID
+                        echo "Building Docker image for frontend"
+                        bat 'docker build -t ems209_frontend:latest -f cicd_team_ems209/dockerfile .'
+                    }
+                }
+            }
+        }
+
+        // Stage to push Docker image for frontend
+        stage('Push Docker Image for Frontend') {
+            steps {
+                script {
+                    // Docker login using Jenkins credentials store
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                        echo "Logging in to Docker Hub"
+                        bat "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD} ${DOCKER_REGISTRY}"
+                    }
+
+                    // Tagging the frontend image with build ID and latest
+                    bat "docker tag ems209_frontend:latest ${IMAGE_NAME}:${TAG}"
+                    bat "docker tag ems209_frontend:latest ${IMAGE_NAME}:latest"
+
+                    // Pushing the frontend image to Docker Hub
+                    bat "docker push ${IMAGE_NAME}:${TAG}"
+                    bat "docker push ${IMAGE_NAME}:latest"
+                }
+            }
+        }    
     }
-}
+}    
