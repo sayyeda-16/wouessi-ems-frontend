@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    tool{
-        nodejs "NodeJS"
-    }
+    tools {
+        nodejs "NodeJS"  
+
     stages {
         stage('Checkout') {
             steps {
@@ -30,7 +30,6 @@ pipeline {
         stage('Run Tests') {
             steps {
                 script {
-                    // Command to run tests, e.g., for a Node.js project
                     sh 'npm test'
                 }
             }
