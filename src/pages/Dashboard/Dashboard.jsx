@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import {
     FaChartLine, FaCog, FaHourglassHalf, FaMoneyBillWave,
-    FaProjectDiagram, FaUmbrellaBeach, FaUser, FaUserTie
+    FaProjectDiagram, FaUmbrellaBeach, FaUser, FaUserTie, FaUserMinus
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Approvals from "../../assets/images/Approvals.png";
 import Leaves from "../../assets/images/Leaves.png";
 import MyProfile from "../../assets/images/myprofile.jpg";
 import Onboarding from "../../assets/images/Onboarding.jpg";
+import Offboarding from "../../assets/images/Offboarding.jpg";
 import Payroll from "../../assets/images/Payroll.jpg";
 import Performance from "../../assets/images/Performance.png";
 import Project from "../../assets/images/project.jpg";
@@ -70,7 +71,8 @@ const Dashboard = () => {
                 { name: "Leaves", path: "/leaves", icon: <FaUmbrellaBeach /> },
                 { name: "Payroll", path: "/payroll", icon: <FaMoneyBillWave /> },
                 { name: "Projects", path: "/projects", icon: <FaProjectDiagram /> },
-                { name: "Performance", path: "/performance", icon: <FaChartLine /> }
+                { name: "Performance", path: "/performance", icon: <FaChartLine /> },
+                { name: "Offboarding", path: "/offboarding", icon: <FaUserMinus /> }
             ])
     ];
 
@@ -81,12 +83,16 @@ const Dashboard = () => {
         { title: "Leaves", path: "/leaves", image: Leaves },
         { title: "Payroll", path: "/payroll", image: Payroll },
         { title: "Projects", path: "/projects", image: Project },
-        ...(employee.role === "admin" ? [
-            { title: "Approvals", path: "/approvals", image: Approvals },
-            { title: "Performance", path: "/performance", image: Performance },
-            { title: "Settings", path: "/settings", image: Settings }
-        ] : [])
+        { title: "Offboarding", path: "/offboarding", image: Offboarding },
+        ...(employee.role === "admin"
+            ? [
+                { title: "Approvals", path: "/approvals", image: Approvals },
+                { title: "Performance", path: "/performance", image: Performance },
+                { title: "Settings", path: "/settings", image: Settings }
+            ]
+            : [])
     ];
+    
 
     return (
         <div className="dashboard-wrapper">
