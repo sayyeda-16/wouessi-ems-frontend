@@ -10,6 +10,7 @@ import Leaves from "./pages/Leaves/Leaves";
 import Profile from "./pages/Profile/Profile";
 import SubmittedTimesheets from "./pages/Timesheets/SubmittedTimesheets";
 import Timesheets from "./pages/Timesheets/Timesheets";
+import SubmittedTimesheets from "./pages/Timesheets/SubmittedTimesheets";
 
 const AppRouter = () => {
     return (
@@ -29,6 +30,7 @@ const AppRouter = () => {
             </Routes>
         </Router>
     );
+
 };
 
 export default AppRouter;

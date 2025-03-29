@@ -51,6 +51,13 @@ export default function SubmittedTimesheetsTable() {
                   {column}
                 </th>
               );
+    <main className="submittedtimesheets-wrapper">
+      <table>
+        <caption>Submitted TimeSheets</caption>
+        <tbody>
+          <tr>
+            {columns.map((column, index) => {
+              return <th key={column + index}>{column}</th>;
             })}
           </tr>
           {dummyData.map((data, index) => {
@@ -67,6 +74,11 @@ export default function SubmittedTimesheetsTable() {
                 </td>
                 <td
                   role="cell"
+              <tr key={data + index}>
+                <td data-cell="employee">{data.employee}</td>
+                <td data-cell="week">{data.week}</td>
+                <td data-cell="total hours">{data.totalHours}</td>
+                <td
                   data-cell="status"
                   style={{
                     color: `${statusStyle[data.status]}`,
