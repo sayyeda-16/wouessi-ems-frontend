@@ -116,4 +116,5 @@ export const updateEmployeeStatus = async (empId, authToken) => {
         console.error("Error toggling employee status:", error);
         throw error;
     }
+    
 };
