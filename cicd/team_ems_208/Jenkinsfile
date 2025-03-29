@@ -2,12 +2,13 @@ pipeline {
     agent any
 
     tools {
-        nodejs "NodeJS"  
+        nodejs "NodeJS"  // Ensure "NodeJS" is the name of the Node.js installation in Jenkins
+    }
 
     stages {
         stage('Checkout') {
             steps {
-               git branch: 'feat_ems_208', url: 'https://github.com/VNBcoding/wouessi-ems-frontend.git'
+                git branch: 'feat_ems_208', url: 'https://github.com/VNBcoding/wouessi-ems-frontend.git'
             }
         }
         
@@ -44,5 +45,4 @@ pipeline {
             echo 'Pipeline failed.'
         }
     }
-}
 }
