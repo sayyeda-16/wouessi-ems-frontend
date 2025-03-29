@@ -9,6 +9,7 @@ import Login from "./pages/Login/Login";
 import Leaves from "./pages/Leaves/Leaves";
 import Profile from "./pages/Profile/Profile";
 import Timesheets from "./pages/Timesheets/Timesheets";
+import SubmittedTimesheets from "./pages/Timesheets/SubmittedTimesheets";
 
 const AppRouter = () => {
     return (
@@ -24,9 +25,11 @@ const AppRouter = () => {
                 <Route path="/about" element={<AboutUs />} />
                 <Route path="/employee-management" element={<EmployeeManagement />} />
                 <Route path="/timesheets" element={<Timesheets />} />
+                <Route path="/submitted-timesheets" element={<SubmittedTimesheets />} />
             </Routes>
         </Router>
     );
+
 };
 
 export default AppRouter;
