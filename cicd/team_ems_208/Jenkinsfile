@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+               git branch: 'feat_ems_208', url: 'https://github.com/VNBcoding/wouessi-ems-frontend.git'
             }
         }
         
