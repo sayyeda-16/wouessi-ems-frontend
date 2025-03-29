@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../../styles/pages/Timesheets.css";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
+import { saveTimeSheet } from "../../services/timesheetService";
 
 const Timesheets = () => {
   const [date, setDate] = useState("");
@@ -17,7 +18,7 @@ const Timesheets = () => {
   }, []);
 
   //Save a new timesheet entry
-  const handleSave = () => {
+  const handleSave = async () => {
     if (!date || !hoursWorked || !task.trim()) {
       alert("Please fill out all fields.");
       return;
@@ -27,6 +28,22 @@ const Timesheets = () => {
       alert("Hours worked must be greater than 0.");
       return;
     }
+    const empId = localStorage.getItem("empId");
+    const accessToken = localStorage.getItem("accessToken");
+    //saves timesheet to database
+    if (!empId || !accessToken) {
+      alert("Unable to save timehseet invalid session");
+      return;
+    }
+    await saveTimeSheet(
+      {
+        date,
+        hoursWorked: parseFloat(hoursWorked),
+        task,
+        empId,
+      },
+      accessToken
+    );
 
     const newEntry = { date, hoursWorked, task: task.trim() };
     const updatedEntries = [...entries, newEntry];
