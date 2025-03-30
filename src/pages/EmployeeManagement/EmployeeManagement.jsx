@@ -31,7 +31,18 @@ const EmployeeManagement = () => {
   const fetchEmployees = async () => {
     try {
       const res = await getAllEmployees(authToken);
-      setEmployees(res.employees);
+      // Adding dummy certificate data for demonstration
+      const employeesWithCerts = res.employees.map((emp) => ({
+        ...emp,
+        certificates: [
+          {
+            name: "Internship Completion",
+            generatedOn: "03/25/2025",
+            file: "dummy_certificate.pdf", // Placeholder for actual file path
+          },
+        ],
+      }));
+      setEmployees(employeesWithCerts);
     } catch (err) {
       console.error(err);
     }
@@ -80,10 +91,8 @@ const EmployeeManagement = () => {
       `${emp.empId} ${emp.firstName} ${emp.middleName} ${emp.lastName} ${emp.email}`
         .toLowerCase()
         .includes(searchQuery.toLowerCase());
-
     const matchesRole =
       selectedRole === "all" || emp.employmentType === selectedRole;
-
     return matchesSearch && matchesRole;
   });
 
@@ -92,7 +101,6 @@ const EmployeeManagement = () => {
       alert("No employees to export.");
       return;
     }
-
     const employeeData = employees.map((emp) => ({
       "Emp ID": emp.empId,
       Name: `${emp.firstName} ${emp.middleName || ""} ${emp.lastName}`,
@@ -106,21 +114,26 @@ const EmployeeManagement = () => {
         ? new Date(emp.dateOfJoin).toLocaleDateString()
         : "N/A",
       "Work Location": emp.workLocation,
+      Certificates: emp.certificates
+        ? emp.certificates.map((c) => `${c.name} (${c.generatedOn})`).join(", ")
+        : "None",
     }));
-
     const worksheet = XLSX.utils.json_to_sheet(employeeData);
-
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Employees");
-
     XLSX.writeFile(workbook, "EmployeeList.xlsx");
+  };
+
+  const handleViewCertificate = (certificateFile) => {
+    // Placeholder: In a real app, this would open or download the certificate
+    alert(`Viewing certificate: ${certificateFile}`);
+    // Example: window.open(certificateFile, '_blank');
   };
 
   return (
     <>
       <Header />
       <div className="container employee-management">
-        {/* Navigation Tabs */}
         <ul className="nav nav-tabs mb-3">
           {[
             "VIEW EMPLOYEES LIST",
@@ -131,9 +144,7 @@ const EmployeeManagement = () => {
             <li className="nav-item" key={tab}>
               <button
                 className={`nav-link ${activeTab === tab ? "active" : ""}`}
-                onClick={() => {
-                  setActiveTab(tab);
-                }}
+                onClick={() => setActiveTab(tab)}
               >
                 {tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
@@ -141,7 +152,6 @@ const EmployeeManagement = () => {
           ))}
         </ul>
 
-        {/* Search Bar & Export Button */}
         {activeTab === "VIEW EMPLOYEES LIST" && (
           <div className="search-container">
             <div className="search-filters">
@@ -173,7 +183,6 @@ const EmployeeManagement = () => {
           </div>
         )}
 
-        {/* VIEW Employees */}
         {activeTab === "VIEW EMPLOYEES LIST" && (
           <div className="table-responsive">
             <table className="table table-striped table-hover">
@@ -186,6 +195,7 @@ const EmployeeManagement = () => {
                   <th>Designation</th>
                   <th>EmpType</th>
                   <th>Status</th>
+                  <th>Certificates</th>
                 </tr>
               </thead>
               <tbody>
@@ -200,6 +210,26 @@ const EmployeeManagement = () => {
                     <td>{emp.designations}</td>
                     <td>{emp.employmentType}</td>
                     <td>{emp.status}</td>
+                    <td>
+                      {emp.certificates && emp.certificates.length > 0
+                        ? emp.certificates.map((cert, index) => (
+                            <div key={index} className="certificate-entry">
+                              {cert.name}, Generated on {cert.generatedOn}{" "}
+                              &nbsp;
+                              <a
+                                href="#"
+                                className="view-link"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  handleViewCertificate(cert.file);
+                                }}
+                              >
+                                View
+                              </a>
+                            </div>
+                          ))
+                        : "None"}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -207,14 +237,12 @@ const EmployeeManagement = () => {
           </div>
         )}
 
-        {/* ADD Employee - Uses Reusable Component */}
         {activeTab === "ADD NEW EMPLOYEE" && (
           <div className="form-container">
             <EmployeeForm onSubmit={handleAddEmployee} />
           </div>
         )}
 
-        {/* UPDATE Employee */}
         {activeTab === "UPDATE EMPLOYEE" && (
           <div className="table-responsive">
             <table className="table table-striped table-hover">
@@ -227,6 +255,7 @@ const EmployeeManagement = () => {
                   <th>Designation</th>
                   <th>EmpType</th>
                   <th>Status</th>
+                  <th>Certificates</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -242,6 +271,26 @@ const EmployeeManagement = () => {
                     <td>{emp.designations}</td>
                     <td>{emp.employmentType}</td>
                     <td>{emp.status}</td>
+                    <td>
+                      {emp.certificates && emp.certificates.length > 0
+                        ? emp.certificates.map((cert, index) => (
+                            <div key={index} className="certificate-entry">
+                              {cert.name}, Generated on {cert.generatedOn}{" "}
+                              &nbsp;
+                              <a
+                                href="#"
+                                className="view-link"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  handleViewCertificate(cert.file);
+                                }}
+                              >
+                                View
+                              </a>
+                            </div>
+                          ))
+                        : "None"}
+                    </td>
                     <td>
                       <button
                         className="btn btn-warning btn-sm"
@@ -265,7 +314,6 @@ const EmployeeManagement = () => {
           onUpdate={fetchEmployees}
         />
 
-        {/* Deactivate Employee */}
         {activeTab === "DEACTIVATE EMPLOYEE" && (
           <div className="table-responsive">
             <table className="table table-bordered">
@@ -278,6 +326,7 @@ const EmployeeManagement = () => {
                   <th>Designation</th>
                   <th>Emp Type</th>
                   <th>Status</th>
+                  <th>Certificates</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -298,6 +347,26 @@ const EmployeeManagement = () => {
                       }
                     >
                       {emp.status}
+                    </td>
+                    <td>
+                      {emp.certificates && emp.certificates.length > 0
+                        ? emp.certificates.map((cert, index) => (
+                            <div key={index} className="certificate-entry">
+                              {cert.name}, Generated on {cert.generatedOn}{" "}
+                              &nbsp;
+                              <a
+                                href="#"
+                                className="view-link"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  handleViewCertificate(cert.file);
+                                }}
+                              >
+                                View
+                              </a>
+                            </div>
+                          ))
+                        : "None"}
                     </td>
                     <td>
                       <button
