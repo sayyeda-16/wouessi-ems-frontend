@@ -3,13 +3,14 @@ import { FaBuilding, FaCheck, FaEdit, FaEnvelope, FaPhone, FaTimes, FaVenusMars 
 import profile from "../../assets/icons/profile.jpg";
 import Footer from "../../components/layout/Footer";
 import Header from "../../components/layout/Header";
-import { getEmployeeById, updateEmployee } from "../../services/employeeService";
+import { getEmployeeById, updateEmployee, uploadProfilePicture } from '../../services/employeeService'; // Ensure correct import
 import "../../styles/pages/Profile.css";
-
+const API_URL = "http://localhost:5000";  
 const Profile = () => {
     const [employee, setEmployee] = useState(null);
     const [isEditing, setIsEditing] = useState({});
     const [updatedData, setUpdatedData] = useState({});
+    
 
     useEffect(() => {
         const fetchEmployee = async () => {
@@ -53,6 +54,25 @@ const Profile = () => {
         }
     };
 
+    const handleProfilePictureChange = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+      
+        const formData = new FormData();
+        formData.append("profilePicture", file);
+      
+        try {
+          const response = await uploadProfilePicture(employee.empId, formData);
+          if (response && response.filePath) {
+
+            setEmployee((prev) => ({ ...prev, imageFolder: response.filePath }));
+          }
+          alert("Profile picture updated successfully. Please refresh the page to see changes.");
+        } catch (error) {
+          console.error("Error uploading profile picture:", error);
+        }
+      };
+
     if (!employee) return <p>Loading...</p>;
 
     return (
@@ -62,12 +82,21 @@ const Profile = () => {
                 {/* Left Profile Section */}
                 <div className="profile-sidebar">
                     <div className="profile-image-container">
-                        <img
-                            src={profile || employee.imageFolder}
-                            alt="Profile"
-                            className="profile-image"
-                        />
+                    <img
+                        src={employee.imageFolder ? `${API_URL}/uploads/${employee.empId}.png` : profile} 
+                        alt="Profile"
+                        className="profile-image"
+                    />
+                    <input
+                        type="file"
+                        id="profile-upload"
+                        accept="image/*"
+                        style={{ display: "none" }}
+                        onChange={handleProfilePictureChange}
+                    />
+                    <label htmlFor="profile-upload">
                         <FaEdit className="edit-icon" />
+                    </label>
                     </div>
                     <h3>{employee.firstName} {employee.lastName}</h3>
                     <span className="designation">{employee.designations}</span>
@@ -144,7 +173,7 @@ const Profile = () => {
                                 <input type="text" value={employee.empId} disabled />
                             </div>
                             <div>
-                                <label>Employement Type:</label>
+                                <label>Employment Type:</label>
                                 <input type="text" value={employee.employmentType} disabled />
                             </div>
                             <div>
@@ -172,36 +201,6 @@ const Profile = () => {
                         )}
                     </div>
 
-                    {/* Banking Information */}
-                    <div className="card">
-                        <div className="card-header">
-                            <span>Banking Details</span>
-                            <FaEdit onClick={() => handleEdit("banking")} />
-                        </div>
-                        <div className="info-row">
-                            <div>
-                                <label>Bank Name:</label>
-                                <input type="text" value={employee.bankName} disabled />
-                            </div>
-                            <div>
-                                <label>Account Number:</label>
-                                <input type="text" value={employee.accountNumber} disabled />
-                            </div>
-                            <div>
-                                <label>Transit Number:</label>
-                                <input type="text" value={employee.transitNumber} disabled />
-                            </div>
-                            <div>
-                                <label>Institution Number:</label>
-                                <input type="text" value={employee.institutionNumber} disabled />
-                            </div>
-                            <div>
-                                <label>Interac ID:</label>
-                                <input type="text" value={employee.interacId} disabled />
-                            </div>
-                        </div>
-                    </div>
-
                     {/* Emergency Contact */}
                     <div className="card">
                         <div className="card-header">
@@ -220,62 +219,6 @@ const Profile = () => {
                             <div>
                                 <label>RelationShip:</label>
                                 <input type="text" value={employee.emergencyContactRelation} disabled />
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Health */}
-                    <div className="card">
-                        <div className="card-header">
-                            <span>Health Information</span>
-                            <FaEdit onClick={() => handleEdit("emergency")} />
-                        </div>
-                        <div className="info-row">
-                            <div>
-                                <label>Health Card No:</label>
-                                <input type="text" name="healthCardNo" value={updatedData.healthCardNo} onChange={handleInputChange} disabled={!isEditing.work} />
-                            </div>
-                            <div>
-                                <label>Practitioner Clinic:</label>
-                                <input type="text" name="practitionerClinicName" value={updatedData.practitionerClinicName} onChange={handleInputChange} disabled={!isEditing.work} />
-                            </div>
-                            <div>
-                                <label>Practitioner Name:</label>
-                                <input type="text" name="practitionerName" value={updatedData.practitionerName} onChange={handleInputChange} disabled={!isEditing.work} />
-                            </div>
-                            <div>
-                                <label>Family Practitioner Name:</label>
-                                <input type="text" name="familyPractitionerName" value={updatedData.familyPractitionerName} onChange={handleInputChange} disabled={!isEditing.work} />
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Other Information */}
-                    <div className="card">
-                        <div className="card-header">
-                            <span>Other Information</span>
-                            <FaEdit onClick={() => handleEdit("Others")} />
-                        </div>
-                        <div className="info-row">
-                            <div>
-                                <label>Work Permit ID</label>
-                                <input type="text" name="workPermitDetails" value={employee.workPermitDetails} onChange={handleInputChange} disabled={!isEditing.Others} />
-                            </div>
-                            <div>
-                                <label>PR Card Number:</label>
-                                <input type="text" name="prDetails" value={employee.prDetails} onChange={handleInputChange} disabled={!isEditing.Others} />
-                            </div>
-                            <div>
-                                <label>SIN:</label>
-                                <input type="text" name="sin" value={employee.sin} onChange={handleInputChange} disabled={!isEditing.Others} />
-                            </div>
-                            <div>
-                                <label>Citizenship ID:</label>
-                                <input type="text" name="citizenshipId" value={employee.citizenshipId} onChange={handleInputChange} disabled={!isEditing.Others} />
-                            </div>
-                            <div>
-                                <label>Tax Code:</label>
-                                <input type="text" name="taxCode" value={employee.taxCode} onChange={handleInputChange} disabled={!isEditing.Others} />
                             </div>
                         </div>
                     </div>

@@ -117,3 +117,31 @@ export const updateEmployeeStatus = async (empId, authToken) => {
         throw error;
     }
 };
+
+export const uploadProfilePicture = async (empId, formData, authToken) => {
+    try {
+        const response = await fetch(`${API_URL}/employee/${empId}/uploadProfilePicture`, {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Authorization": `Bearer ${authToken}`
+            },
+            body: formData
+        });
+        const data = await response.json();
+        if (!response.ok) {
+            console.error("Error response:", data);
+            throw new Error(data.error || "Failed to upload profile picture");
+        }
+        // Check if filePath is returned from the server
+        if (!data.filePath) {
+            console.error("Profile picture URL not received from the server");
+            throw new Error("Profile picture URL not received from the server");
+        }
+
+        return data.filePath;  // Return the file path
+    } catch (error) {
+        console.error("Error uploading profile picture:", error.message);
+        throw error;
+    }
+};
