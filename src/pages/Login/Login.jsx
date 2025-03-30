@@ -63,6 +63,7 @@ const Login = () => {
                             onChange={(e) => setEmpId(e.target.value)}
                             placeholder="Enter Employee ID"
                             required
+                            aria-label="Enter your employee ID"
                         />
                     </div>
 
@@ -75,6 +76,7 @@ const Login = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="Enter Password"
                             required
+                            aria-label="Enter your password"
                         />
                     </div>
 
@@ -84,12 +86,13 @@ const Login = () => {
                                 id="rememberMe"
                                 checked={rememberMe}
                                 onChange={(e) => setRememberMe(e.target.checked)}
+                                aria-label="Remember Me"
                             />
                             <label htmlFor="rememberMe">Remember Me</label>
                         </div>
 
                         <div className="forgot-password">
-                            <Link to="/forgot-password">Forgot Password?</Link>
+                            <Link to="/forgot-password" aria-label="Forgot your password?">Forgot Password?</Link>
                         </div>
                     </div>
 
