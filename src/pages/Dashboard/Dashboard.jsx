@@ -19,6 +19,8 @@ import Sidebar from "../../components/layout/Sidebar";
 import { logout } from "../../services/authService";
 import { getEmployeeById } from "../../services/employeeService";
 import "../../styles/pages/Dashboard.css";
+import LoadingSpinner from "../../components/common/LoadingSpinner.jsx";
+
 
 const Dashboard = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -56,7 +58,8 @@ const Dashboard = () => {
         }
     };
 
-    if (!employee) return <p>Loading...</p>;
+    if (!employee) return <LoadingSpinner />;
+
 
     const menuItems = [
         { name: "My Profile", path: "/profile", icon: <FaUser /> },

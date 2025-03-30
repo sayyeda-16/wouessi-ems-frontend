@@ -5,6 +5,7 @@ import LoginImage from "../../assets/images/WouessiLoginPageImage1.jpg";
 import Button from "../../components/common/Button";
 import CheckBox from "../../components/common/CheckBox";
 import TextBox from "../../components/common/TextBox";
+import LoadingSpinner from "../../components/common/LoadingSpinner.jsx";
 import { login } from "../../services/authService";
 import "../../styles/pages/Login.css";
 
@@ -12,12 +13,14 @@ const Login = () => {
     const [empId, setEmpId] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
         setError("");
+        setLoading(true);
 
         try {
             const data = await login(empId, password);
@@ -26,8 +29,13 @@ const Login = () => {
             navigate("/dashboard");
         } catch (err) {
             setError(err.message);
+        } finally {
+            setLoading(false);
         }
     };
+
+    // Show loading spinner while waiting
+    if (loading) return <LoadingSpinner message="Logging in..." />;
 
     return (
         <div className="login-container">
