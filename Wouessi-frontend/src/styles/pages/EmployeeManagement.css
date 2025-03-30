@@ -1,0 +1,309 @@
+/* Employee Management Page Styling */
+.employee-management {
+    padding-top: 70px;
+    padding-bottom: 40px;
+    background-color: white;
+    max-width: 100%;
+}
+
+/* Navigation Tabs */
+.nav-tabs {
+    border-bottom: 2px solid #2b03a2;
+    margin-bottom: 20px;
+}
+
+.nav-tabs .nav-link {
+    color: #2b03a2;
+    font-weight: bold;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #2b03a2;
+    color: white;
+    border-radius: 5px;
+}
+
+/* Search Bar and Export Button */
+.search-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+    gap: 15px;
+}
+
+.search-filters {
+    display: flex;
+    gap: 15px;
+    flex: 1;
+}
+
+.search-input,
+.role-filter {
+    height: 38px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 6px 12px;
+}
+
+.search-input {
+    flex: 2;
+    min-width: 200px;
+}
+
+.role-filter {
+    flex: 1;
+    min-width: 150px;
+    background-color: white;
+}
+
+.btn-export {
+    background-color: #2b03a2;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    white-space: nowrap;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Table Styling */
+.table {
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+/* Ensure table headers are consistent */
+.table thead th {
+    background-color: #2b03a2;
+    color: white;
+    text-align: left;
+    padding: 12px;
+}
+
+/* Set uniform row height and text alignment */
+.table tbody tr {
+    height: 50px; /* Consistent row height */
+    vertical-align: middle;
+}
+
+/* Ensure consistent spacing in table cells */
+.table th, 
+.table td {
+    padding: 12px 10px;
+    vertical-align: middle;
+    text-align: left;
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+/* Button Alignment Inside Table */
+.table tbody td .btn {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Delete Button Styling */
+.table tbody td .btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border-radius: 5px;
+    height: 38px;
+}
+
+/* Edit Button Styling */
+.table tbody td .btn-warning {
+    background-color: #ffc107;
+    color: black;
+    border-radius: 5px;
+    height: 38px;
+}
+
+/* Ensure consistent table row spacing */
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* ============================ */
+/* EMPLOYEE FORM STYLING */
+/* ============================ */
+
+.employee-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.employee-form {
+    max-width: 99%;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Heading */
+.employee-form h4 {
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Section Titles */
+.employee-form h5 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #2b03a2;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #2b03a2;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* Form Grid Layout */
+.employee-form .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+/* Two-column layout */
+.employee-form .col-md-6 {
+    flex: 0 0 48%;
+    max-width: 48%;
+}
+
+/* Three-column layout */
+.employee-form .col-md-4 {
+    flex: 0 0 30%;
+    max-width: 30%;
+}
+
+/* Single full-width column */
+.employee-form .col-md-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+/* Input Fields */
+.employee-form input,
+.employee-form select,
+.employee-form textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+/* Focus Effect for Inputs */
+.employee-form input:focus,
+.employee-form select:focus,
+.employee-form textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* File Upload Input */
+.employee-form .file-upload {
+    border: 2px dashed #007bff;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #f8f9fa;
+}
+
+/* Address Fields */
+.address-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.address-row input {
+    flex: 1;
+}
+
+/* Submit Button */
+.employee-form .btn-primary {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Button Hover */
+.employee-form .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .employee-form {
+        max-width: 98%;
+    }
+    .employee-form .col-md-6,
+    .employee-form .col-md-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .search-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .search-filters {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .search-input,
+    .role-filter {
+        width: 100%;
+    }
+
+    .btn-export {
+        width: 100%;
+    }
+
+    .employee-form {
+        padding: 20px;
+    }
+
+    .employee-form h4 {
+        font-size: 1.4rem;
+    }
+
+    .employee-form h5 {
+        font-size: 1.1rem;
+    }
+
+    /* Ensure table row heights remain consistent in mobile view */
+    .table tbody tr {
+        height: auto;
+    }
+
+    .table tbody td .btn {
+        height: auto;
+        font-size: 0.85rem;
+        padding: 5px 10px;
+    }
+}
