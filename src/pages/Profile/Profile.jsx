@@ -200,6 +200,35 @@ const Profile = () => {
                             </div>
                         )}
                     </div>
+                     {/* Banking Information */}
+                     <div className="card">
+                        <div className="card-header">
+                            <span>Banking Details</span>
+                            <FaEdit onClick={() => handleEdit("banking")} />
+                        </div>
+                        <div className="info-row">
+                            <div>
+                                <label>Bank Name:</label>
+                                <input type="text" value={employee.bankName} disabled />
+                            </div>
+                            <div>
+                                <label>Account Number:</label>
+                                <input type="text" value={employee.accountNumber} disabled />
+                            </div>
+                            <div>
+                                <label>Transit Number:</label>
+                                <input type="text" value={employee.transitNumber} disabled />
+                            </div>
+                            <div>
+                                <label>Institution Number:</label>
+                                <input type="text" value={employee.institutionNumber} disabled />
+                            </div>
+                            <div>
+                                <label>Interac ID:</label>
+                                <input type="text" value={employee.interacId} disabled />
+                            </div>
+                        </div>
+                    </div>
 
                     {/* Emergency Contact */}
                     <div className="card">
@@ -219,6 +248,61 @@ const Profile = () => {
                             <div>
                                 <label>RelationShip:</label>
                                 <input type="text" value={employee.emergencyContactRelation} disabled />
+                            </div>
+                        </div>
+                    </div>
+                     {/* Health */}
+                     <div className="card">
+                        <div className="card-header">
+                            <span>Health Information</span>
+                            <FaEdit onClick={() => handleEdit("emergency")} />
+                        </div>
+                        <div className="info-row">
+                            <div>
+                                <label>Health Card No:</label>
+                                <input type="text" name="healthCardNo" value={updatedData.healthCardNo} onChange={handleInputChange} disabled={!isEditing.work} />
+                            </div>
+                            <div>
+                                <label>Practitioner Clinic:</label>
+                                <input type="text" name="practitionerClinicName" value={updatedData.practitionerClinicName} onChange={handleInputChange} disabled={!isEditing.work} />
+                            </div>
+                            <div>
+                                <label>Practitioner Name:</label>
+                                <input type="text" name="practitionerName" value={updatedData.practitionerName} onChange={handleInputChange} disabled={!isEditing.work} />
+                            </div>
+                            <div>
+                                <label>Family Practitioner Name:</label>
+                                <input type="text" name="familyPractitionerName" value={updatedData.familyPractitionerName} onChange={handleInputChange} disabled={!isEditing.work} />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Other Information */}
+                    <div className="card">
+                        <div className="card-header">
+                            <span>Other Information</span>
+                            <FaEdit onClick={() => handleEdit("Others")} />
+                        </div>
+                        <div className="info-row">
+                            <div>
+                                <label>Work Permit ID</label>
+                                <input type="text" name="workPermitDetails" value={employee.workPermitDetails} onChange={handleInputChange} disabled={!isEditing.Others} />
+                            </div>
+                            <div>
+                                <label>PR Card Number:</label>
+                                <input type="text" name="prDetails" value={employee.prDetails} onChange={handleInputChange} disabled={!isEditing.Others} />
+                            </div>
+                            <div>
+                                <label>SIN:</label>
+                                <input type="text" name="sin" value={employee.sin} onChange={handleInputChange} disabled={!isEditing.Others} />
+                            </div>
+                            <div>
+                                <label>Citizenship ID:</label>
+                                <input type="text" name="citizenshipId" value={employee.citizenshipId} onChange={handleInputChange} disabled={!isEditing.Others} />
+                            </div>
+                            <div>
+                                <label>Tax Code:</label>
+                                <input type="text" name="taxCode" value={employee.taxCode} onChange={handleInputChange} disabled={!isEditing.Others} />
                             </div>
                         </div>
                     </div>
