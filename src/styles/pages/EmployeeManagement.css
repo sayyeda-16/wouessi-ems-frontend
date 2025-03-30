@@ -78,6 +78,7 @@
   background-color: #fff;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
+  margin-bottom: 20px; /* Added spacing below table */
 }
 
 /* Ensure table headers are consistent */
@@ -86,6 +87,9 @@
   color: white;
   text-align: left;
   padding: 12px;
+  position: sticky; /* Keep headers fixed when scrolling */
+  top: 0; /* Stick to top of container */
+  z-index: 1; /* Ensure headers stay above table body */
 }
 
 /* Set uniform row height and text alignment */
@@ -155,6 +159,18 @@
 .view-link:hover {
   color: #1a0166; /* Darker shade of #2b03a2 for hover */
   text-decoration: underline;
+}
+
+/* Table Responsiveness */
+.table-responsive {
+  overflow-x: auto; /* Enable horizontal scrolling on small screens */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
+  max-width: 100%; /* Prevent overflow beyond container */
+}
+
+/* Minimum width for table to ensure all columns are visible */
+.table {
+  min-width: 900px; /* Adjust based on your table's content width */
 }
 
 /* ============================ */
