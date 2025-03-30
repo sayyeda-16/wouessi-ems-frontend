@@ -8,6 +8,7 @@ import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import Login from "./pages/Login/Login";
 import Leaves from "./pages/Leaves/Leaves";
 import Profile from "./pages/Profile/Profile";
+import SubmittedTimesheets from "./pages/Timesheets/SubmittedTimesheets";
 import Timesheets from "./pages/Timesheets/Timesheets";
 import SubmittedTimesheets from "./pages/Timesheets/SubmittedTimesheets";
 
