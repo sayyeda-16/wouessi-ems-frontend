@@ -1,0 +1,17 @@
+<table>
+    <thead>
+        <tr>
+            <th>
+                <input type="checkbox" id="selectAll" onclick="toggleSelectAll()" />
+            </th>
+            <th>Name</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody id="teamTable">
+        <!-- Rows will be dynamically added here -->
+    </tbody>
+</table>
+<button onclick="sendCertificates()">Send Certificates</button>
+
+
