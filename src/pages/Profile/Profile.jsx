@@ -3,7 +3,7 @@ import { FaBuilding, FaCheck, FaEdit, FaEnvelope, FaPhone, FaTimes, FaVenusMars 
 import profile from "../../assets/icons/profile.jpg";
 import Footer from "../../components/layout/Footer";
 import Header from "../../components/layout/Header";
-import { getEmployeeById, updateEmployee, uploadProfilePicture } from '../../services/employeeService'; // Ensure correct import
+import { getEmployeeById, updateEmployee, uploadProfilePicture } from '../../services/employeeService'; 
 import "../../styles/pages/Profile.css";
 const API_URL = "http://localhost:5000";  
 const Profile = () => {
