@@ -5,6 +5,8 @@ import Footer from "../../components/layout/Footer";
 import Header from "../../components/layout/Header";
 import { getEmployeeById, updateEmployee } from "../../services/employeeService";
 import "../../styles/pages/Profile.css";
+import LoadingSpinner from "../../components/common/LoadingSpinner.jsx";
+
 
 const Profile = () => {
     const [employee, setEmployee] = useState(null);
@@ -53,7 +55,8 @@ const Profile = () => {
         }
     };
 
-    if (!employee) return <p>Loading...</p>;
+    if (!employee) return <LoadingSpinner message="Loading profile..." />;
+
 
     return (
         <>

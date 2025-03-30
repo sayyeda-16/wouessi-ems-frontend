@@ -4,19 +4,27 @@ import ForgotPasswordImage from "../../assets/images/WouessiLoginPageImage1.jpg"
 import Button from "../../components/common/Button";
 import TextBox from "../../components/common/TextBox";
 import "../../styles/pages/ForgotPassword.css";
+import LoadingSpinner from "../../components/common/LoadingSpinner.jsx";
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState("");
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        alert("Password reset link sent to " + email);
-        navigate("/login");
+        setLoading(true);
+
+        setTimeout(() => {
+            alert("Password reset link sent to " + email);
+            setLoading(false);
+            navigate("/login");
+        }, 2000);
     };
+    if (loading) return <LoadingSpinner message="Sending reset link..." />;
 
     return (
-    <div className="forgot-password-container">
+        <div className="forgot-password-container">
             <div className="forgot-password-left">
                 <div className="forgot-password-image">
                     <img src={ForgotPasswordImage} alt="Forgot Password Illustration" />
@@ -50,5 +58,6 @@ const ForgotPassword = () => {
         </div>
     );
 };
+
 
 export default ForgotPassword;

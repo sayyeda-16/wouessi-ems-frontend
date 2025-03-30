@@ -12,6 +12,8 @@ import {
     updateEmployeeStatus
 } from "../../services/employeeService";
 import "../../styles/pages/EmployeeManagement.css";
+import LoadingSpinner from "../../components/common/LoadingSpinner.jsx";
+
 
 const EmployeeManagement = () => {
     const [employees, setEmployees] = useState([]);
@@ -19,6 +21,7 @@ const EmployeeManagement = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedEmployeeId, setSelectedEmployeeId] = useState(null);
     const [authToken, setAuthToken] = useState("");
+    const [loading, setLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
@@ -29,12 +32,16 @@ const EmployeeManagement = () => {
 
     const fetchEmployees = async () => {
         try {
-            const res = await getAllEmployees(authToken);
-            setEmployees(res.employees);
+          setLoading(true);
+          const res = await getAllEmployees(authToken);
+          setEmployees(res.employees);
         } catch (err) {
-            console.error(err);
+          console.error(err);
+        } finally {
+          setLoading(false);
         }
     };
+      
 
     const handleSearch = (e) => {
         setSearchQuery(e.target.value);
@@ -104,6 +111,8 @@ const EmployeeManagement = () => {
         XLSX.writeFile(workbook, "EmployeeList.xlsx");
     };
 
+    if (loading) return <LoadingSpinner />;
+    
     return (
         <>
             <Header />

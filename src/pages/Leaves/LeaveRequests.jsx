@@ -3,6 +3,8 @@ import "../../styles/pages/Leaves.css";
 import Dropdown from "../../components/common/DropDown.jsx";  
 import Tag from "../../components/common/Tag";  
 import { getAllLeaves } from "../../services/leavesService.js";  
+import LoadingSpinner from "../../components/common/LoadingSpinner.jsx";
+
 
 const LeaveRequests = ({empId}) => {
   const [requests, setRequests] = useState([]);
@@ -50,7 +52,7 @@ const LeaveRequests = ({empId}) => {
       </div>
       <div className="table-wrap">
         {loading ? (
-          <p>Loading leave requests...</p>
+          <LoadingSpinner />
         ) : error ? (
           <p className="error">{error}</p>
         ) : filteredRequests.length === 0 ? (
