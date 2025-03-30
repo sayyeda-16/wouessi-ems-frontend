@@ -1,0 +1,115 @@
+/* General styles */
+.internship-certificate-container {
+  padding: 20px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.certificate-card {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 20px;
+}
+
+.card-title {
+  color: #343a40;
+  font-weight: 600;
+}
+
+.form-label {
+  font-weight: 500;
+  color: #495057;
+}
+
+.form-control {
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+.preview-text {
+  background-color: #f1f3f5;
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 0.95rem;
+}
+
+.preview-text p {
+  margin: 5px 0;
+  color: #212529;
+}
+
+.btn-generate {
+  padding: 10px 30px;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-generate:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Medium screens (tablets, 768px and below) */
+@media (max-width: 768px) {
+  .certificate-card {
+    padding: 15px;
+  }
+
+  .internship-certificate-container {
+    padding: 15px;
+  }
+
+  .btn-generate {
+    width: 100%;
+    padding: 12px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .lead {
+    font-size: 1rem;
+  }
+}
+
+/* Small screens (mobile, 576px and below) */
+@media (max-width: 576px) {
+  .certificate-card {
+    margin: 0;
+    padding: 10px;
+  }
+
+  .form-control {
+    font-size: 0.9rem;
+  }
+
+  .preview-text {
+    font-size: 0.85rem;
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h5.card-title {
+    font-size: 1.2rem;
+  }
+
+  .btn-generate {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .lead {
+    font-size: 0.9rem;
+  }
+}
