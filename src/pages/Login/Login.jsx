@@ -5,6 +5,7 @@ import LoginImage from "../../assets/images/WouessiLoginPageImage1.jpg";
 import Button from "../../components/common/Button";
 import CheckBox from "../../components/common/CheckBox";
 import TextBox from "../../components/common/TextBox";
+import LoadingSpinner from "../../components/common/LoadingSpinner.jsx";
 import { login } from "../../services/authService";
 import "../../styles/pages/Login.css";
 
@@ -12,12 +13,14 @@ const Login = () => {
     const [empId, setEmpId] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
         setError("");
+        setLoading(true);
 
         try {
             const data = await login(empId, password);
@@ -26,8 +29,13 @@ const Login = () => {
             navigate("/dashboard");
         } catch (err) {
             setError(err.message);
+        } finally {
+            setLoading(false);
         }
     };
+
+    // Show loading spinner while waiting
+    if (loading) return <LoadingSpinner message="Logging in..." />;
 
     return (
         <div className="login-container">
@@ -55,6 +63,7 @@ const Login = () => {
                             onChange={(e) => setEmpId(e.target.value)}
                             placeholder="Enter Employee ID"
                             required
+                            aria-label="Enter your employee ID"
                         />
                     </div>
 
@@ -67,6 +76,7 @@ const Login = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="Enter Password"
                             required
+                            aria-label="Enter your password"
                         />
                     </div>
 
@@ -76,12 +86,13 @@ const Login = () => {
                                 id="rememberMe"
                                 checked={rememberMe}
                                 onChange={(e) => setRememberMe(e.target.checked)}
+                                aria-label="Remember Me"
                             />
                             <label htmlFor="rememberMe">Remember Me</label>
                         </div>
 
                         <div className="forgot-password">
-                            <Link to="/forgot-password">Forgot Password?</Link>
+                            <Link to="/forgot-password" aria-label="Forgot your password?">Forgot Password?</Link>
                         </div>
                     </div>
 
